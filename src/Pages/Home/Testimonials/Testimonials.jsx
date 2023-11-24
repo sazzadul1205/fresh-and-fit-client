@@ -1,0 +1,76 @@
+import { Pagination, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import DefaultAvatar from "../../../assets/DefaultAvatar.jpeg";
+import Title from '../../Shared/PageTitles/Title';
+import { Rating } from '@smastrom/react-rating';
+
+import '@smastrom/react-rating/style.css';
+
+const Testimonials = () => {
+    // Dummy data for illustration
+    const testimonials = [
+        {
+            id: 1,
+            name: 'John Doe',
+            avatar: '/avatars/avatar1.jpg',
+            quote:
+                "I've achieved amazing results with FitnessHub! The personalized workout plans and expert guidance have transformed my fitness journey.",
+            rating: 4,
+        },
+        {
+            id: 2,
+            name: 'Jane Smith',
+            avatar: '/avatars/avatar2.jpg',
+            quote:
+                'FitnessHub has made fitness enjoyable for me. The live classes and supportive community keep me motivated every day.',
+            rating: 5,
+        },
+        {
+            id: 3,
+            name: 'Alex Johnson',
+            avatar: '/avatars/avatar3.jpg',
+            quote:
+                'Joining FitnessHub was the best decision for my health. The expert trainers and diverse classes cater to all fitness levels.',
+            rating: 3,
+        },
+    ];
+
+    return (
+        <div>
+            <Title title='Testimonials' />
+            <Swiper
+                pagination={{
+                    type: 'progressbar',
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className="mySwiper"
+            >
+                {testimonials.map((testimonial) => (
+                    <SwiperSlide key={testimonial.id}>
+                        <div className="p-6 py-20 bg-[#7752FE]">
+                            <div className="avatar flex gap-5">
+                                <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 mb-2">
+                                    <img src={DefaultAvatar} alt={`Avatar of ${testimonial.name}`} />
+                                </div>
+                                <p className="text-gray-800 font-semibold text-3xl mt-5">{testimonial.name}</p>
+                            </div>
+                            <p className="text-white mb-6 ml-4 mt-10">{testimonial.quote}</p>
+                            <Rating
+                                style={{ maxWidth: 180 }}
+                                value={testimonial.rating}
+                                readOnly
+                            />
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
+    );
+};
+
+export default Testimonials;
