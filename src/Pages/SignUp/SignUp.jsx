@@ -5,21 +5,50 @@ import useAuth from '../../Hooks/useAuth';
 import Swal from "sweetalert2";
 import './SignUp.css'
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { motion } from "framer-motion";
 const SignUp = () => {
     const { createUser, updateUser } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
+
+
+    const currentDate = new Date();
+    const formattedDateTime = currentDate.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    });
 
     const onSubmit = (data) => {
+        const UserData = {
+            name: data.name,
+            email: data.email,
+            role: 'customer',
+            creationTime: formattedDateTime,
+        }
         createUser(data.email, data.password)
             .then(res => {
                 const user = res.user;
                 console.log(user);
                 updateUser(data.name, data.photoURL)
                     .then(() => {
-                        showSuccessAlert();
-                        reset();
-                        navigate('/');
+                        axiosPublic.post('/users', UserData)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    showSuccessAlert()
+                                    reset();
+                                    navigate('/');
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                showErrorAlert('Failed to update user profile.');
+                            });
                     })
                     .catch(error => {
                         console.log(error);
@@ -36,7 +65,7 @@ const SignUp = () => {
         Swal.fire({
             icon: 'success',
             title: 'Sign Up Successful!',
-            text: 'You can now log in with your credentials.',
+            text: 'You are now a user Welcome.',
         });
     };
 
@@ -153,10 +182,13 @@ const SignUp = () => {
                             </div>
 
                             <div className="form-control mt-6">
-                                <input
+                                <motion.input
                                     className={`w-full p-3 bg-red-500 hover:bg-red-800 disabled:bg-gray-500 rounded-xl`}
-                                    type="submit"
-                                    value="Sign Up"
+                                    type='submit'
+                                    value={'Sign Up'}
+                                    whileHover={{ scale: 1.2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
                                 />
                                 <h1 className="font-normal text-sm mt-2">
                                     Already have an account?{' '}

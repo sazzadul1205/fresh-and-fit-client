@@ -4,6 +4,7 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
@@ -89,10 +90,14 @@ const Login = () => {
                             </div>
 
                             <div className="form-control mt-6">
-                                <input
+
+                                <motion.input
                                     className={`w-full p-3 bg-red-500 hover:bg-red-800 disabled:bg-gray-500 rounded-xl`}
-                                    type="submit"
-                                    value="Log In"
+                                    type='submit'
+                                    value={'Log In'}
+                                    whileHover={{ scale: 1.2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
                                 />
                                 <h1 className="font-normal text-sm mt-2">
                                     Don`t have an account?{' '}

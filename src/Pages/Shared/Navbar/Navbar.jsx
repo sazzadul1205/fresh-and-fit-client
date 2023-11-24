@@ -1,7 +1,7 @@
 import logo from "../../../assets/FNF.png";
-import DefaultAvatar from "../../../assets/DefaultAvatar.jpeg";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -74,17 +74,30 @@ const Navbar = () => {
                         <>
                             <div className="avatar flex-col mr-5">
                                 <div className="w-14 h-14 rounded-full ring ring-primary mx-auto">
-                                    <img src={user?.photoURL || DefaultAvatar} alt="User Avatar" className="object-cover rounded-full" />
+                                    <img src={user?.photoURL} alt="User Avatar" className="object-cover rounded-full" />
                                 </div>
                                 <h2 className="text-sm text-center">{user?.displayName}</h2>
                             </div>
-                            <button className={`w-28 p-3 bg-[#001B79] hover:bg-blue-700 rounded-xl`} onClick={handleSignOut}>
+
+                            <motion.button
+                                className={`w-28 p-3 bg-[#001B79] hover:bg-blue-700 rounded-xl`} onClick={handleSignOut}
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.9 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            >
                                 Log Out
-                            </button>
+                            </motion.button>
                         </>
                     ) : (
                         <Link to="/login">
-                            <button className={`w-28 p-3 bg-[#001B79] hover:bg-blue-700 rounded-xl`}>Log In</button>
+                            <motion.button
+                                className={`w-28 p-3 bg-[#001B79] hover:bg-blue-700 rounded-xl`} onClick={handleSignOut}
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.9 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            >
+                                Log In
+                            </motion.button>
                         </Link>
                     )}
                 </div>
