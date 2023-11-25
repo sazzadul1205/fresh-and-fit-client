@@ -5,6 +5,9 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Login from "../Pages/Login/Login";
 // import NotFound from "../Pages/NotFound/NotFound";
 import Gallery from "../Pages/Gallery/Gallery/Gallery";
+import Trainer from "../Pages/Trainer/Trainer/Trainer";
+import TrainerDetails from "../Pages/TrainerDetails/TrainerDetails";
+import BeATrainer from "../Pages/BeATrainer/BeATrainer";
 
 
 export const router = createBrowserRouter([
@@ -20,6 +23,19 @@ export const router = createBrowserRouter([
             {
                 path: '/gallery',
                 element:<Gallery></Gallery>,
+            },
+            {
+                path: '/trainer',
+                element:<Trainer></Trainer>,
+            },
+            {
+                path: '/trainer/:id',
+                element:<TrainerDetails></TrainerDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/trainers/${params.id}`)
+            },
+            {
+                path: '/beATrainer',
+                element:<BeATrainer></BeATrainer>,
             },
             {
                 path: '/signUp',
