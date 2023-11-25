@@ -40,19 +40,15 @@ const BeATrainer = () => {
         axiosPublic.post('/nTrainerRequest', BATInfo)
             .then((response) => {
                 if (response.data.insertedId) {
-                    // Show success message
                     Swal.fire({
                         icon: 'success',
                         title: 'Item Added Successfully!',
                         showConfirmButton: false,
                         timer: 1500,
                     });
-
-                    // Navigate to the trainer page
-
                     navigate('/trainer');
                 } else {
-                    // Show error message for unexpected response
+
                     Swal.fire({
                         icon: 'error',
                         title: 'Error!',
@@ -62,8 +58,7 @@ const BeATrainer = () => {
             })
             .catch((error) => {
                 console.error('Error:', error.message);
-                // Handle the error as needed
-                // Show an appropriate error message to the user
+
                 Swal.fire({
                     icon: 'error',
                     title: 'Error!',

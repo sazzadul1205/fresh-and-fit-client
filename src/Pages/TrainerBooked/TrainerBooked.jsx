@@ -33,6 +33,7 @@ const TrainerBooked = () => {
         setSelectedSlot(slotNumber);
     };
 
+
     const handleBookNow = () => {
         const bookingInfo = {
             trainerId: _id,
@@ -43,12 +44,9 @@ const TrainerBooked = () => {
             selectedPlan: selectedPlan.name,
             selectedSlot: selectedSlot,
             price: selectedPlan.price,
-
-        }
-        console.log(bookingInfo);
+        };
+        localStorage.setItem('bookingInfo', JSON.stringify(bookingInfo));
     };
-
-
 
     return (
         <div className="container mx-auto p-5 pt-20  shadow-lg rounded-lg">
@@ -119,7 +117,7 @@ const TrainerBooked = () => {
             <div className="flex justify-end mt-6">
                 <Link to={'/payment'}>
                     <motion.button
-                        className={`w-1/5 p-3 bg-green-500 hover:bg-green-800 rounded-xl ${selectedPlan ? '' : 'cursor-not-allowed'}`}
+                        className={`w-full p-3 bg-green-500 hover:bg-green-800 rounded-xl ${selectedPlan ? '' : 'cursor-not-allowed'}`}
                         onClick={handleBookNow}
                         disabled={!selectedPlan}
                         whileHover={{ scale: 1.2 }}
