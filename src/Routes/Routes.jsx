@@ -8,6 +8,7 @@ import Gallery from "../Pages/Gallery/Gallery/Gallery";
 import Trainer from "../Pages/Trainer/Trainer/Trainer";
 import TrainerDetails from "../Pages/TrainerDetails/TrainerDetails";
 import BeATrainer from "../Pages/BeATrainer/BeATrainer";
+import TrainerBooked from "../Pages/TrainerBooked/TrainerBooked";
 
 
 export const router = createBrowserRouter([
@@ -34,9 +35,15 @@ export const router = createBrowserRouter([
                 loader: ({params}) => fetch(`http://localhost:5000/trainers/${params.id}`)
             },
             {
+                path: '/trainerBooking/:id',
+                element:<TrainerBooked></TrainerBooked>,
+                loader: ({params}) => fetch(`http://localhost:5000/trainers/${params.id}`)
+            },
+            {
                 path: '/beATrainer',
                 element:<BeATrainer></BeATrainer>,
             },
+
             {
                 path: '/signUp',
                 element:<SignUp></SignUp>

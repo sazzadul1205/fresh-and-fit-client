@@ -2,9 +2,11 @@ import { Link, useLoaderData } from "react-router-dom";
 import Title from "../Shared/PageTitles/Title";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 
 const TrainerDetails = () => {
     const {
+        _id,
         fullName,
         email,
         age,
@@ -18,10 +20,9 @@ const TrainerDetails = () => {
     } = useLoaderData();
 
     const calculateAvailableSlots = () => {
-        // Assuming each slot is 1 hour in length
         const slots = Array.from({ length: availableSlots }, (_, index) => ({
             slotNumber: index + 1,
-            time: `${index + 1}:00 - ${index + 2}:00`, // Assuming hourly slots
+            time: `${index + 1}:00 - ${index + 2}:00`,
             isAvailable: availableTimeDay.includes("Everyday") || availableTimeDay.includes(availableTimeWeek[index % 7]),
         }));
         return slots;
@@ -30,7 +31,7 @@ const TrainerDetails = () => {
     return (
         <div className="container mx-auto mt-10 p-5 pt-20 bg-[#7D7C7C] shadow-lg rounded-lg">
             <Helmet>
-            <title>Fresh & Fit || Know More</title>
+                <title>Fresh & Fit || Know More</title>
             </Helmet>
             <div className="text-center">
                 <Title
@@ -79,7 +80,18 @@ const TrainerDetails = () => {
                                 <tr key={slot.slotNumber}>
                                     <td>{slot.slotNumber}</td>
                                     <td>{slot.time}</td>
-                                    <td>{slot.isAvailable ? "Available" : "Empty"}</td>
+                                    <td>
+                                        <Link to={`/trainerBooking/${_id}`}>
+                                            <motion.input
+                                                className={`w-full p-3 bg-red-500 hover:bg-red-800  rounded-xl`}
+                                                type='submit'
+                                                value={'Book'}
+                                                whileHover={{ scale: 1.2 }}
+                                                whileTap={{ scale: 0.9 }}
+                                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                            />
+                                        </Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

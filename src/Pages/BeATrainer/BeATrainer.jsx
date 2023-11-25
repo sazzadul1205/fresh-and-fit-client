@@ -6,11 +6,13 @@ import useAuth from '../../Hooks/useAuth';
 import './BeATrainer.css';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const BeATrainer = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic()
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         const selectedSkills = skillsArray.filter(skill => data.skills && data.skills.includes(skill));
@@ -27,6 +29,7 @@ const BeATrainer = () => {
                 twitter: data.twitter,
                 instagram: data.instagram
             },
+            availableSlots: data.availableSlots,
             skills: selectedSkills,
             availableTimeWeek: selectedAvailableWeeks,
             availableTimeDay: selectedAvailableDays,
@@ -34,19 +37,41 @@ const BeATrainer = () => {
 
         console.log(BATInfo);
 
-            const Info = await axiosPublic.post('/nTrainerRequest', BATInfo);
-            if (Info.data.insertedId) {
-                // Show success message
+        axiosPublic.post('/nTrainerRequest', BATInfo)
+            .then((response) => {
+                if (response.data.insertedId) {
+                    // Show success message
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Item Added Successfully!',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+
+                    // Navigate to the trainer page
+
+                    navigate('/trainer');
+                } else {
+                    // Show error message for unexpected response
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'Failed to add item. Please try again later.',
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error.message);
+                // Handle the error as needed
+                // Show an appropriate error message to the user
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Item Added Successfully!',
-                    showConfirmButton: false,
-                    timer: 1500,
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'An error occurred. Please try again later.',
                 });
-            }
-    };
+            });
 
-
+    }
     // Define an array of skills
     const skillsArray = [
         "Yoga",
@@ -181,11 +206,11 @@ const BeATrainer = () => {
                                 </label>
                                 <input
                                     type="number"
-                                    {...register('experience', { required: 'Experience is required' })}
-                                    placeholder="Experience"
+                                    {...register('availableSlots', { required: 'Experience is required' })}
+                                    placeholder="Available Slots"
                                     className="input input-bordered"
                                 />
-                                {errors.experience && <p className="text-red-500">{errors.experience.message}</p>}
+                                {errors.availableSlots && <p className="text-red-500">{errors.availableSlots.message}</p>}
                             </div>
 
                             <div className="divider">OR</div>
