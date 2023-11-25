@@ -107,20 +107,20 @@ const BeATrainer = () => {
     ));
 
     return (
-        <div className="pt-20 BAT-background bg-cover">
+        <div className="pt-20 BAT-background bg-cover pb-10">
             <Helmet>
                 <title>Fresh & Fit || Become a Trainer</title>
             </Helmet>
             <div>
-                <div>
+                <div className='bg-white opacity-80 py-10'>
                     <Title
                         title={'Join Our Team of Fitness Professionals'}
                         subTitle={'Share your passion for fitness and help others achieve their wellness goals. Apply now to become a valued member of our fitness trainer team.'}
                     ></Title>
                 </div>
-                <div>
-                    <div className="card md:w-1/2 max-w-sm mx-auto shadow-2xl bg-base-100 ">
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                <div className=''>
+                    <div className="card md:w-1/2 max-w-sm mx-auto shadow-2xl bg-base-100 mb-5">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
                             <div className="form-control">
                                 <label className="label" htmlFor="name">
                                     <span className="label-text">Name</span>
