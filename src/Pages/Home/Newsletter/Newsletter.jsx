@@ -25,10 +25,10 @@ const Newsletter = () => {
         <div>
             <Title
                 title={'Join The Newsletter'}
-                subTitle={'Subscribe to get latest Content by Email'}
+                subTitle={'Subscribe to get the latest Content by Email'}
             ></Title>
             <div className="">
-                <form onSubmit={handleSubmit(onSubmit)} className="card-body Newsletter-item bg-fixed">
+                <form onSubmit={handleSubmit(onSubmit)} className="card-body Newsletter-item bg-fixed md:w-3/4 lg:w-[1200px]  mx-auto">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-black text-2xl">Name</span>
@@ -37,7 +37,7 @@ const Newsletter = () => {
                             type="text"
                             {...register("name", { required: true })}
                             name="name"
-                            placeholder="name"
+                            placeholder="Name"
                             className="input input-bordered text-black" />
                     </div>
                     <div className="form-control">
@@ -48,7 +48,7 @@ const Newsletter = () => {
                             type="email"
                             {...register("email", { required: true })}
                             name="email"
-                            placeholder="email"
+                            placeholder="Email"
                             className="input input-bordered text-black" />
                     </div>
 
