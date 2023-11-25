@@ -8,8 +8,6 @@ import { Helmet } from "react-helmet-async";
 
 const Trainer = () => {
     const [trainers] = useTrainers();
-    console.log(trainers);
-
     return (
         <div>
             <Helmet>
