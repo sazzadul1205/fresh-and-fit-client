@@ -12,6 +12,7 @@ import TrainerBooked from "../Pages/TrainerBooked/TrainerBooked";
 import Payment from "../Pages/Payment/Payment";
 import Classes from "../Pages/Classes/Classes";
 import AddClasses from "../Pages/AddClasses/AddClasses";
+import Forms from "../Pages/Forms/Forms";
 
 
 export const router = createBrowserRouter([
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 path: '/addClasses',
                 element:<AddClasses></AddClasses>,
+            },
+            {
+                path: '/forms',
+                element:<Forms></Forms>,
             },
 
             {
