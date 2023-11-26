@@ -2,23 +2,59 @@ import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
 import Title from "../../Shared/PageTitles/Title";
 import "./Newsletter.css";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const Newsletter = () => {
     const { register, handleSubmit } = useForm();
+    const axiosPublic = useAxiosPublic();
+
+    const currentDate = new Date();
+    const formattedDateTime = currentDate.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    });
 
     const onSubmit = (data) => {
         console.log(data);
+        const Subscriber = {
+            name: data.name,
+            email: data.email,
+            date: formattedDateTime,
+        }
 
-        // Show SweetAlert on successful submission
+        axiosPublic.post('/newsLetter', Subscriber)
+            .then(res => {
+                if (res.data.insertedId) {
+                    showSuccessAlert()
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                showErrorAlert('Failed to update user profile.');
+            });
+    };
+
+
+    const showSuccessAlert = () => {
         Swal.fire({
             title: 'Subscription Successful!',
-            text: `Thank you, ${data.name}! You are now subscribed.`,
+            text: `Thank you! You are now a new News Letter subscribed.`,
             icon: 'success',
             timer: 2000,
             timerProgressBar: true,
             showConfirmButton: false
         });
-
+    };
+    const showErrorAlert = (errorMessage) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'News Letter Sign Up Failed',
+            text: errorMessage,
+        });
     };
 
     return (

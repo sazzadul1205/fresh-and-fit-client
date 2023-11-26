@@ -16,6 +16,7 @@ import Forms from "../Pages/Forms/Forms";
 import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Layout/DashboardLayout";
 import AllSubscribers from "../Dashboard/AllSubscribers/AllSubscribers";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 
 
 export const router = createBrowserRouter([
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
         path: `/dashboard`,
         element: <Dashboard></Dashboard>,
         children: [
+            {
+                path: '/dashboard',
+                element: <DashboardHome></DashboardHome>
+            },
             // admin
             {
                 path: 'allSubscribers',

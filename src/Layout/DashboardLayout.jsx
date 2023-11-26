@@ -2,12 +2,10 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+
 const Dashboard = () => {
-
-    const { user } = useAuth()
+    const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
-    console.log(user);
-
 
     const { data: myAccount = [], isLoading: isUserLoading } = useQuery({
         queryKey: ['myAccount'],
@@ -17,19 +15,19 @@ const Dashboard = () => {
         },
         enabled: !!user,
     });
-    console.log(myAccount.role);
-    if (isUserLoading) {
-        <p>Loading...</p>
+
+    if (isUserLoading || !myAccount) {
+        return <p>Loading...</p>;
     }
 
-    // common links
     const navLinks = [
         { to: "/", label: "Home" },
         { to: "/gallery", label: "Gallery" },
         { to: "/trainer", label: "Trainer" },
         { to: "/classes", label: "Classes" },
         { to: "/forms", label: "Forms" },
-    ];
+    ]
+
     const userNavLink = [
         { to: "activityLog", label: "Activity Log" },
         { to: "profileSettings", label: "Profile Settings" },
@@ -37,12 +35,14 @@ const Dashboard = () => {
         { to: "", label: "dummy-1" },
         { to: "", label: "dummy-2" },
     ];
+
     const trainerNavLink = [
         { to: "manageSlots", label: "Manage Slots" },
         { to: "manageMember", label: "Manage member" },
         { to: "addNewForum", label: "Add new Forum" },
         { to: "addNewClass", label: "Add new Class" },
     ];
+
     const AdminNavLink = [
         { to: "allSubscribers", label: "All subscribers" },
         { to: "allTrainers:", label: "All Trainers:" },
@@ -120,13 +120,11 @@ const Dashboard = () => {
         </li>
     ));
 
-
     return (
-
         <div className="max-w-screen-xl mx-auto flex">
             {/* Dashboard side bar */}
             <div className="w-64 min-h-screen bg-red-500 pt-10">
-                <h1 className="text-center">Welcome Back</h1>
+                <h1 className="text-center text-2xl font-bold text-blue-800 ">Dashboard</h1>
                 <ul className="menu p-4">
                     <ul className="menu menu-vertical px-1 text-blue-800 ">
                         {adminNav}
