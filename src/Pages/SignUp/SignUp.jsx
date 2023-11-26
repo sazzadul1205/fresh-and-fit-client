@@ -28,7 +28,7 @@ const SignUp = () => {
         const UserData = {
             name: data.name,
             email: data.email,
-            role: 'customer',
+            role: 'member',
             creationTime: formattedDateTime,
         }
         createUser(data.email, data.password)

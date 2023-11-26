@@ -13,6 +13,7 @@ import Payment from "../Pages/Payment/Payment";
 import Classes from "../Pages/Classes/Classes";
 import AddClasses from "../Pages/AddClasses/AddClasses";
 import Forms from "../Pages/Forms/Forms";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 export const router = createBrowserRouter([
@@ -45,11 +46,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/beATrainer',
-                element:<BeATrainer></BeATrainer>,
+                element:<PrivateRoutes><BeATrainer></BeATrainer></PrivateRoutes>,
             },
             {
                 path: '/payment',
-                element:<Payment></Payment>,
+                element:<PrivateRoutes><Payment></Payment></PrivateRoutes>,
             },
             {
                 path: '/classes',
@@ -73,5 +74,8 @@ export const router = createBrowserRouter([
                 element: <Login></Login>
             }
         ]
+    },
+    {
+        path: `/dashboard`
     }
 ])
