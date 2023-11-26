@@ -15,6 +15,7 @@ import AddClasses from "../Pages/AddClasses/AddClasses";
 import Forms from "../Pages/Forms/Forms";
 import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Layout/DashboardLayout";
+import AllSubscribers from "../Dashboard/AllSubscribers/AllSubscribers";
 
 
 export const router = createBrowserRouter([
@@ -22,53 +23,53 @@ export const router = createBrowserRouter([
         path: "/",
         element: <PublicLayout></PublicLayout>,
         // errorElement: <NotFound></NotFound>,
-        children:[
+        children: [
             {
                 path: '/',
-                element:<Home></Home>,
+                element: <Home></Home>,
             },
             {
                 path: '/gallery',
-                element:<Gallery></Gallery>,
+                element: <Gallery></Gallery>,
             },
             {
                 path: '/trainer',
-                element:<Trainer></Trainer>,
+                element: <Trainer></Trainer>,
             },
             {
                 path: '/trainer/:id',
-                element:<TrainerDetails></TrainerDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/trainers/${params.id}`)
+                element: <TrainerDetails></TrainerDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
             },
             {
                 path: '/trainerBooking/:id',
-                element:<TrainerBooked></TrainerBooked>,
-                loader: ({params}) => fetch(`http://localhost:5000/trainers/${params.id}`)
+                element: <TrainerBooked></TrainerBooked>,
+                loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
             },
             {
                 path: '/beATrainer',
-                element:<PrivateRoutes><BeATrainer></BeATrainer></PrivateRoutes>,
+                element: <PrivateRoutes><BeATrainer></BeATrainer></PrivateRoutes>,
             },
             {
                 path: '/payment',
-                element:<PrivateRoutes><Payment></Payment></PrivateRoutes>,
+                element: <PrivateRoutes><Payment></Payment></PrivateRoutes>,
             },
             {
                 path: '/classes',
-                element:<Classes></Classes>,
+                element: <Classes></Classes>,
             },
             {
                 path: '/addClasses',
-                element:<AddClasses></AddClasses>,
+                element: <AddClasses></AddClasses>,
             },
             {
                 path: '/forms',
-                element:<Forms></Forms>,
+                element: <Forms></Forms>,
             },
 
             {
                 path: '/signUp',
-                element:<SignUp></SignUp>
+                element: <SignUp></SignUp>
             },
             {
                 path: '/login',
@@ -78,6 +79,14 @@ export const router = createBrowserRouter([
     },
     {
         path: `/dashboard`,
-        element: <Dashboard></Dashboard>
+        element: <Dashboard></Dashboard>,
+        children: [
+            // admin
+            {
+                path: 'allSubscribers',
+                element: <AllSubscribers></AllSubscribers>
+            }
+
+        ]
     }
 ])
