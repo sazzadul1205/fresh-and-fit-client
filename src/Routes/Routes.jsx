@@ -14,6 +14,7 @@ import Classes from "../Pages/Classes/Classes";
 import AddClasses from "../Pages/AddClasses/AddClasses";
 import Forms from "../Pages/Forms/Forms";
 import PrivateRoutes from "./PrivateRoutes";
+import Dashboard from "../Layout/DashboardLayout";
 
 
 export const router = createBrowserRouter([
@@ -76,6 +77,7 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: `/dashboard`
+        path: `/dashboard`,
+        element: <Dashboard></Dashboard>
     }
 ])

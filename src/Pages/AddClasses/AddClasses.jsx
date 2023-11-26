@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddClasses = () => {
     const { register, handleSubmit } = useForm();
@@ -53,6 +54,9 @@ const AddClasses = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Add Classes</title>
+            </Helmet>
             <div className="pt-20">
                 <Title
                     title={'Create a New Fitness Class'}
