@@ -45,8 +45,8 @@ const Dashboard = () => {
 
     const AdminNavLink = [
         { to: "allSubscribers", label: "All subscribers" },
-        { to: "allTrainers:", label: "All Trainers:" },
-        { to: "appliedTrainer:", label: "Applied Trainer:" },
+        { to: "allTrainers", label: "All Trainers:" },
+        { to: "appliedTrainer", label: "Applied Trainer:" },
         { to: "balance", label: "Balance" },
     ];
 

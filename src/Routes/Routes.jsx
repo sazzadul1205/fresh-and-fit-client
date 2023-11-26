@@ -17,6 +17,8 @@ import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Layout/DashboardLayout";
 import AllSubscribers from "../Dashboard/AllSubscribers/AllSubscribers";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
+import AllTrainers from "../Dashboard/AllTrainers/AllTrainers";
+import TrainerPayment from "../Dashboard/TrainerPayment/TrainerPayment";
 
 
 export const router = createBrowserRouter([
@@ -88,10 +90,18 @@ export const router = createBrowserRouter([
             },
             // admin
             {
-                path: 'allSubscribers',
+                path: 'allSubscribers', 
                 element: <AllSubscribers></AllSubscribers>
-            }
-
+            },
+            {
+                path: 'allTrainers', 
+                element: <AllTrainers></AllTrainers>
+            },
+            {
+                path: 'trainerPayment/:id',
+                element: <TrainerPayment></TrainerPayment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
+            },
         ]
     }
 ])
