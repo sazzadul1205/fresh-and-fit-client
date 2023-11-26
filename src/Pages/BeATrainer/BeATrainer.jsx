@@ -42,7 +42,7 @@ const BeATrainer = () => {
                 if (response.data.insertedId) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Item Added Successfully!',
+                        title: 'Application Submitted Successfully!',
                         showConfirmButton: false,
                         timer: 1500,
                     });
@@ -52,7 +52,7 @@ const BeATrainer = () => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error!',
-                        text: 'Failed to add item. Please try again later.',
+                        text: 'Failed to Submit. Please try again later.',
                     });
                 }
             })
@@ -197,7 +197,7 @@ const BeATrainer = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label" htmlFor="experience">
-                                    <span className="label-text">Experience</span>
+                                    <span className="label-text">Available Slots</span>
                                 </label>
                                 <input
                                     type="number"

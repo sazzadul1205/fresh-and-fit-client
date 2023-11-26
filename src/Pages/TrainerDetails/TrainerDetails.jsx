@@ -29,7 +29,7 @@ const TrainerDetails = () => {
     };
 
     return (
-        <div className="container mx-auto mt-10 p-5 pt-20 bg-[#7D7C7C] shadow-lg rounded-lg">
+        <div className="container mx-auto p-5 pt-20 bg-[#7D7C7C] shadow-lg rounded-lg">
             <Helmet>
                 <title>Fresh & Fit || Know More</title>
             </Helmet>
