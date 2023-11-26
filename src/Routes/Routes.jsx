@@ -10,6 +10,8 @@ import TrainerDetails from "../Pages/TrainerDetails/TrainerDetails";
 import BeATrainer from "../Pages/BeATrainer/BeATrainer";
 import TrainerBooked from "../Pages/TrainerBooked/TrainerBooked";
 import Payment from "../Pages/Payment/Payment";
+import Classes from "../Pages/Classes/Classes";
+import AddClasses from "../Pages/AddClasses/AddClasses";
 
 
 export const router = createBrowserRouter([
@@ -47,6 +49,14 @@ export const router = createBrowserRouter([
             {
                 path: '/payment',
                 element:<Payment></Payment>,
+            },
+            {
+                path: '/classes',
+                element:<Classes></Classes>,
+            },
+            {
+                path: '/addClasses',
+                element:<AddClasses></AddClasses>,
             },
 
             {

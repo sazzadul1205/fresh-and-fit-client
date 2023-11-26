@@ -3,6 +3,7 @@ import Title from '../Shared/PageTitles/Title';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Payment = () => {
     const bookingInfo = JSON.parse(localStorage.getItem('bookingInfo'));
@@ -44,15 +45,18 @@ const Payment = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Payment</title>
+            </Helmet>
             <div className='pt-20'>
                 <Title
                     title={'Confirm Your Booking'}
                     subTitle={'Review and confirm your selected trainer, slot, and package details before proceeding with the payment'}
                 ></Title>
             </div>
-            <div className="container mx-auto p-5 pt-10 text-center">
-                <h2 className="text-3xl font-semibold mb-4">Payment Details</h2>
-                <div className="bg-white shadow-md rounded-md p-6">
+            <div className="container mx-auto p-5 pt-10 text-center text-black">
+                <h2 className="text-3xl font-semibold mb-4 text-red-500">Payment Details</h2>
+                <div className="bg-purple-400 shadow-md rounded-md p-6">
                     <p className="mb-2"><span className="font-semibold">Trainer Name:</span> {bookingInfo.trainer}</p>
                     <p className="mb-2"><span className="font-semibold">Slot:</span> {bookingInfo.selectedSlot}</p>
                     <p className="mb-2"><span className="font-semibold">Package Name:</span> {bookingInfo.selectedPlan}</p>

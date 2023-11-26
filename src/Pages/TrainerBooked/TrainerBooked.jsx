@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Title from "../Shared/PageTitles/Title";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const TrainerBooked = () => {
     const { user } = useAuth()
@@ -50,6 +51,9 @@ const TrainerBooked = () => {
 
     return (
         <div className="container mx-auto p-5 pt-20  shadow-lg rounded-lg">
+            <Helmet>
+                <title>Fresh & Fit || Trainer Booking</title>
+            </Helmet>
             <div className="text-center">
                 <Title
                     title={'Choose Your Wellness Path'}
@@ -71,7 +75,7 @@ const TrainerBooked = () => {
                             </thead>
                             <tbody>
                                 {calculateAvailableSlots().map((slot) => (
-                                    <tr key={slot.slotNumber}>
+                                    <tr key={slot.slotNumber} className="text-white">
                                         <td className="text-2xl text-red-500">{slot.slotNumber}</td>
                                         <td>{slot.time}</td>
                                         <td>
@@ -96,7 +100,7 @@ const TrainerBooked = () => {
                 <div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                         {plans.map((plan) => (
-                            <div key={plan.id} className={`border p-4 ${plan.color} ${selectedPlan === plan ? 'border-blue-500' : 'border-gray-300'} cursor-pointer`}>
+                            <div key={plan.id} className={`border p-4 text-black ${plan.color} ${selectedPlan === plan ? 'border-blue-500' : 'border-gray-300'} cursor-pointer`}>
                                 <h3 className="text-xl font-semibold">{plan.name}</h3>
                                 <p>{`${plan.classes} classes included`}</p>
                                 <p>{`Facilities: ${plan.facilities}`}</p>
@@ -114,10 +118,10 @@ const TrainerBooked = () => {
                     {selectedPlan && <h1 className="text-2xl mt-5">Selected Slot: {selectedPlan.name}</h1>}
                 </div>
             </div>
-            <div className="flex justify-end mt-6">
+            <div className="flex justify-end mt-6 text-white">
                 <Link to={'/payment'}>
                     <motion.button
-                        className={`w-full p-3 bg-green-500 hover:bg-green-800 rounded-xl ${selectedPlan ? '' : 'cursor-not-allowed'}`}
+                        className={`w-60 p-3 bg-green-500 hover:bg-green-800 rounded-xl ${selectedPlan ? '' : 'cursor-not-allowed'}`}
                         onClick={handleBookNow}
                         disabled={!selectedPlan}
                         whileHover={{ scale: 1.2 }}
