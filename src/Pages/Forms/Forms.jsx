@@ -133,9 +133,6 @@ const Forms = () => {
                 ))}
                 <button onClick={handleNextPage} className="join-item btn">»</button>
             </div>
-
-
-
         </div>
     );
 };
