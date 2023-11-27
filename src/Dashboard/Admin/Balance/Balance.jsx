@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import Title from "../../Pages/Shared/PageTitles/Title";
 import { MdOutlinePayment } from "react-icons/md";
 import { FaBalanceScale } from "react-icons/fa";
 import BalanceChart from "./BalanceChart";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Title from "../../../Pages/Shared/PageTitles/Title";
+
 
 const Balance = () => {
     const axiosPublic = useAxiosPublic();

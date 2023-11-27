@@ -10,7 +10,7 @@ const Dashboard = () => {
     const { data: myAccount = [], isLoading: isUserLoading } = useQuery({
         queryKey: ['myAccount'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/users/${user?.email}`);
+            const res = await axiosPublic.get(`/users?email=${user?.email}`);
             return res.data;
         },
         enabled: !!user,

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import Title from "../../Pages/Shared/PageTitles/Title";
+import Title from "../../../Pages/Shared/PageTitles/Title";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+
 
 const AllSubscribers = () => {
     const axiosPublic = useAxiosPublic();

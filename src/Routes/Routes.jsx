@@ -15,12 +15,14 @@ import AddClasses from "../Pages/AddClasses/AddClasses";
 import Forms from "../Pages/Forms/Forms";
 import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Layout/DashboardLayout";
-import AllSubscribers from "../Dashboard/AllSubscribers/AllSubscribers";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
-import AllTrainers from "../Dashboard/AllTrainers/AllTrainers";
-import TrainerPayment from "../Dashboard/TrainerPayment/TrainerPayment";
-import AppliedTrainer from "../Dashboard/appliedTrainer/appliedTrainer";
-import Balance from "../Dashboard/Balance/Balance";
+import AllSubscribers from "../Dashboard/Admin/AllSubscribers/AllSubscribers";
+import AllTrainers from "../Dashboard/Admin/AllTrainers/AllTrainers";
+import TrainerPayment from "../Dashboard/Admin/TrainerPayment/TrainerPayment";
+import AppliedTrainer from "../Dashboard/Admin/AppliedTrainer/AppliedTrainer";
+import Balance from "../Dashboard/Admin/Balance/Balance";
+import ManageSlots from "../Dashboard/Trainer/ManageSlots/ManageSlots";
+
 
 
 export const router = createBrowserRouter([
@@ -112,6 +114,11 @@ export const router = createBrowserRouter([
                 path: 'balance',
                 element: <Balance></Balance>
             },
+            // trainer
+            {
+                path: 'manageSlots',
+                element: <ManageSlots></ManageSlots>
+            }
 
         ]
     }

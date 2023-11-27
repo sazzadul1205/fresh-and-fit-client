@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
-import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const BalanceChart = () => {
     const axiosPublic = useAxiosPublic();

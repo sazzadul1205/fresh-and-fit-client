@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Title from '../../Pages/Shared/PageTitles/Title';
-import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import Title from '../../../Pages/Shared/PageTitles/Title';
 
 const AppliedTrainer = () => {
     const [trainerInfo, setTrainerInfo] = useState(null)
@@ -76,7 +76,7 @@ const AppliedTrainer = () => {
                         .delete(`/nTrainerRequest/${trainerInfo._id}`)
                         .then(() => {
                             axiosPublic
-                                .patch(`/users/${trainerInfo.email}`)
+                                .patch(`/users?email=${trainerInfo.email}`)
                                 .then((res) => {
                                     if (res.data.insertedId) {
                                         showSuccessAlert();

@@ -1,7 +1,7 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import Title from "../../Pages/Shared/PageTitles/Title";
+import Title from "../../../Pages/Shared/PageTitles/Title";
 import { motion } from "framer-motion";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
 const TrainerPayment = () => {

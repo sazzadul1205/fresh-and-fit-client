@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import Title from "../../Pages/Shared/PageTitles/Title";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Title from "../../../Pages/Shared/PageTitles/Title";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
