@@ -83,7 +83,7 @@ const TrainerDetails = () => {
                                     <td>
                                         <Link to={`/trainerBooking/${_id}`}>
                                             <motion.input
-                                                className={`w-52 p-3 bg-red-500 hover:bg-red-800  rounded-xl`}
+                                                className={`w-20 p-3 bg-red-500 hover:bg-red-800  rounded-xl`}
                                                 type='submit'
                                                 value={'Book'}
                                                 whileHover={{ scale: 1.2 }}

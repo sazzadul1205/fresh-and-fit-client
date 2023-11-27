@@ -31,6 +31,13 @@ const AppliedTrainer = () => {
         setSelectedTrainer(null);
         document.getElementById('my_modal_1').close();
     };
+    const currentDate = new Date();
+    const formattedDateTime = currentDate.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour12: true,
+    });
 
     // Render the skills list
     const renderSkills = () => {
@@ -44,6 +51,7 @@ const AppliedTrainer = () => {
         return null;
     };
 
+
     const confirmTrainer = async () => {
         const newTrainerInfo = {
             fullName: trainerInfo.fullName,
@@ -56,6 +64,7 @@ const AppliedTrainer = () => {
             skills: trainerInfo.skills,
             availableTimeWeek: trainerInfo.availableTimeWeek,
             availableTimeDay: trainerInfo.availableTimeWeek,
+            joinedDate: formattedDateTime,
         };
         console.log(newTrainerInfo);
         axiosPublic

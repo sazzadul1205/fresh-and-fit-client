@@ -20,6 +20,7 @@ import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import AllTrainers from "../Dashboard/AllTrainers/AllTrainers";
 import TrainerPayment from "../Dashboard/TrainerPayment/TrainerPayment";
 import AppliedTrainer from "../Dashboard/appliedTrainer/appliedTrainer";
+import Balance from "../Dashboard/Balance/Balance";
 
 
 export const router = createBrowserRouter([
@@ -106,7 +107,12 @@ export const router = createBrowserRouter([
             {
                 path: 'appliedTrainer',
                 element: <AppliedTrainer></AppliedTrainer>
-            }
+            },
+            {
+                path: 'balance',
+                element: <Balance></Balance>
+            },
+
         ]
     }
 ])
