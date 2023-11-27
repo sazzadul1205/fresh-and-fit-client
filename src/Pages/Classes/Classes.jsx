@@ -3,8 +3,27 @@ import Title from '../Shared/PageTitles/Title';
 import AllClasses from './AllClasses/AllClasses';
 import WeeklySH from './WeeklySH/WeeklySH';
 import { motion } from "framer-motion";
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import useAuth from '../../Hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
 
 const Classes = () => {
+    const { user } = useAuth();
+    const axiosPublic = useAxiosPublic();
+    const { data: myAccount = [], isLoading: isUserLoading } = useQuery({
+        queryKey: ['myAccount'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/users?email=${user?.email}`);
+            return res.data;
+        },
+    });
+
+    if (isUserLoading) {
+        return <p>Loading...</p>;
+    }
+
+    // Check if the role is either admin or trainer
+    const isAdminOrTrainer = myAccount.role === 'admin' || myAccount.role === 'trainer';
 
     return (
         <div className="pt-20">
@@ -20,19 +39,20 @@ const Classes = () => {
             <div>
                 <AllClasses></AllClasses>
             </div>
-            <div>
-                <Link to={'/addClasses'} className="flex justify-center items-center mt-8">
-                    <motion.input
-                        className={`w-1/5 p-3 bg-red-500 hover:bg-red-800 rounded-xl`}
-                        type='submit'
-                        value={'Add New Classes'}
-                        whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 0.9 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    />
-                </Link>
-
-            </div>
+            {isAdminOrTrainer && (
+                <div>
+                    <Link to={'/addClasses'} className="flex justify-center items-center mt-8">
+                        <motion.input
+                            className={`w-1/5 p-3 bg-red-500 hover:bg-red-800 rounded-xl`}
+                            type='submit'
+                            value={'Add New Classes'}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        />
+                    </Link>
+                </div>
+            )}
         </div>
     );
 };

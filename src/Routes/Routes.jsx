@@ -24,6 +24,7 @@ import Balance from "../Dashboard/Admin/Balance/Balance";
 import ManageSlots from "../Dashboard/Trainer/ManageSlots/ManageSlots";
 import ManageMember from "../Dashboard/Trainer/ManageMember/ManageMember";
 import AddNewForm from "../Dashboard/AddNewForm/AddNewForm";
+import AddNewClasses from "../Dashboard/Trainer/AddNewClasses/AddNewClasses";
 
 
 
@@ -130,8 +131,11 @@ export const router = createBrowserRouter([
                 element: <AddNewForm></AddNewForm>
             },
             {
-                path: 'addNewClasses'
-            }
+                path: 'addNewClasses',
+                element: <AddNewClasses></AddNewClasses>
+            },
+            //  Member
+            
 
         ]
     }

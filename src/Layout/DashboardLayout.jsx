@@ -13,10 +13,9 @@ const Dashboard = () => {
             const res = await axiosPublic.get(`/users?email=${user?.email}`);
             return res.data;
         },
-        enabled: !!user,
     });
 
-    if (isUserLoading || !myAccount) {
+    if (isUserLoading) {
         return <p>Loading...</p>;
     }
 
@@ -40,7 +39,7 @@ const Dashboard = () => {
         { to: "manageSlots", label: "Manage Slots" },
         { to: "manageMember", label: "Manage member" },
         { to: "addNewForum", label: "Add new Forum" },
-        { to: "addNewClass", label: "Add new Class" },
+        { to: "addNewClasses", label: "Add new Class" },
     ];
 
     const AdminNavLink = [
@@ -48,6 +47,7 @@ const Dashboard = () => {
         { to: "allTrainers", label: "All Trainers:" },
         { to: "appliedTrainer", label: "Applied Trainer:" },
         { to: "balance", label: "Balance" },
+        { to: "addNewForum", label: "Add new Forum" },
     ];
 
     const nav = navLinks.map((link) => (
