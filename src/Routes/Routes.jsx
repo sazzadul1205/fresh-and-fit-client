@@ -25,8 +25,7 @@ import ManageSlots from "../Dashboard/Trainer/ManageSlots/ManageSlots";
 import ManageMember from "../Dashboard/Trainer/ManageMember/ManageMember";
 import AddNewForm from "../Dashboard/AddNewForm/AddNewForm";
 import AddNewClasses from "../Dashboard/Trainer/AddNewClasses/AddNewClasses";
-
-
+import ActivityLog from "../Dashboard/Member/ActivityLog/ActivityLog";
 
 export const router = createBrowserRouter([
     {
@@ -95,6 +94,10 @@ export const router = createBrowserRouter([
                 path: '/dashboard',
                 element: <DashboardHome></DashboardHome>
             },
+            {
+                path: 'addNewForum',
+                element: <AddNewForm></AddNewForm>
+            },
             // admin
             {
                 path: 'allSubscribers', 
@@ -127,14 +130,17 @@ export const router = createBrowserRouter([
                 element: <ManageMember></ManageMember>
             },
             {
-                path: 'addNewForum',
-                element: <AddNewForm></AddNewForm>
-            },
-            {
                 path: 'addNewClasses',
                 element: <AddNewClasses></AddNewClasses>
             },
             //  Member
+            {
+                path: 'activityLog',
+                element: <ActivityLog></ActivityLog>
+            },
+            {
+                path: ''
+            }
             
 
         ]
