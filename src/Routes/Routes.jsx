@@ -26,6 +26,7 @@ import ManageMember from "../Dashboard/Trainer/ManageMember/ManageMember";
 import AddNewForm from "../Dashboard/AddNewForm/AddNewForm";
 import AddNewClasses from "../Dashboard/Trainer/AddNewClasses/AddNewClasses";
 import ActivityLog from "../Dashboard/Member/ActivityLog/ActivityLog";
+import ProfileSettings from "../Dashboard/Member/ProfileSettings/ProfileSettings";
 
 export const router = createBrowserRouter([
     {
@@ -139,7 +140,8 @@ export const router = createBrowserRouter([
                 element: <ActivityLog></ActivityLog>
             },
             {
-                path: ''
+                path: 'profileSettings',
+                element: <ProfileSettings></ProfileSettings>
             }
             
 

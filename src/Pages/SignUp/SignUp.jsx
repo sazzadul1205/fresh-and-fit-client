@@ -7,6 +7,7 @@ import './SignUp.css'
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { motion } from "framer-motion";
+
 const SignUp = () => {
     const { createUser, updateUser } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();

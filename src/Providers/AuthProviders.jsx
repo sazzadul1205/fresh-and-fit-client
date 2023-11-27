@@ -25,6 +25,11 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, { displayName: displayName, photoURL: photoURL })
     }
 
+    const updateUserPassword = (password) => {
+        setLoading(true);
+        return updateProfile(auth.currentUser, { password: password })
+    }
+
     const singIn = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
@@ -71,7 +76,8 @@ const AuthProvider = ({ children }) => {
         logOut,
         singIn,
         signInWithGoogle,
-        updateUser
+        updateUser,
+        updateUserPassword
     }
 
 
