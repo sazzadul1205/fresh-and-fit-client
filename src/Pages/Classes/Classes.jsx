@@ -23,8 +23,6 @@ const Classes = () => {
     if (isUserLoading) {
         return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
-
-    // Check if the role is either admin or trainer
     const isAdminOrTrainer = myAccount.role === 'admin' || myAccount.role === 'trainer';
 
     return (

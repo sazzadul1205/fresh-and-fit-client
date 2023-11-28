@@ -4,18 +4,33 @@ import { motion } from "framer-motion";
 import Title from "../Shared/PageTitles/Title";
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import { Orbitals } from "react-spinners-css";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const TrainerBooked = () => {
     const { user } = useAuth()
     const { _id, email, fullName, availableSlots, availableTimeWeek, availableTimeDay } = useLoaderData();
     const [selectedPlan, setSelectedPlan] = useState(null);
     const [selectedSlot, setSelectedSlot] = useState(null);
+    const axiosSecure = useAxiosSecure();
 
     const plans = [
         { id: 1, name: 'Silver', classes: 5, facilities: 'Basic Facilities', color: 'bg-[#c0c0c0]', price: 20 },
         { id: 2, name: 'Gold', classes: 10, facilities: 'Advanced Facilities', color: 'bg-[#D4AF37]', price: 50 },
         { id: 3, name: 'Diamond', classes: 15, facilities: 'Premium Facilities', color: 'bg-[#ADD8E6]', price: 100 },
     ];
+
+    const { data: trainerBookings = [], isLoading: isLoadingTrainerBookings } = useQuery({
+        queryKey: ['bookings'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/bookings?trainerEmail=${email}`);
+            return res.data;
+        }
+    });
+    if (isLoadingTrainerBookings) {
+        return <div className="text-center"><Orbitals color="#FF0000" size={32} /></div>
+    }
 
     const calculateAvailableSlots = () => {
         const slots = Array.from({ length: availableSlots }, (_, index) => ({
@@ -25,6 +40,11 @@ const TrainerBooked = () => {
         }));
         return slots;
     };
+
+    const bookingsInfo = trainerBookings.map(({ bookerName, selectedSlot }) => ({
+        bookerName,
+        selectedSlot,
+    }));
 
     const handlePlanSelection = (plan) => {
         setSelectedPlan(plan);
@@ -79,17 +99,19 @@ const TrainerBooked = () => {
                                         <td className="text-2xl text-red-500">{slot.slotNumber}</td>
                                         <td>{slot.time}</td>
                                         <td>
-                                            <Link to={`/trainerBooking/${_id}`}>
-                                                <motion.input
-                                                    className={`w-full p-3 bg-red-500 hover:bg-red-800  rounded-xl`}
-                                                    type='submit'
-                                                    value={'Book'}
-                                                    onClick={() => handleBookSlot(slot.slotNumber)}
-                                                    whileHover={{ scale: 1.2 }}
-                                                    whileTap={{ scale: 0.9 }}
-                                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                                />
-                                            </Link>
+                                            {bookingsInfo.some((booking) => booking.selectedSlot === slot.slotNumber)
+                                                ? <p className="text-md p-3 bg-slate-800 rounded-xl">Unavailable</p>
+                                                : <Link to={`/trainerBooking/${_id}`}>
+                                                    <motion.input
+                                                        className={`w-20 p-3 bg-red-500 hover:bg-red-800 rounded-xl`}
+                                                        type='submit'
+                                                        value={'Book'}
+                                                        onClick={() => handleBookSlot(slot.slotNumber)}
+                                                        whileHover={{ scale: 1.2 }}
+                                                        whileTap={{ scale: 0.9 }}
+                                                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                                    />
+                                                </Link>}
                                         </td>
                                     </tr>
                                 ))}

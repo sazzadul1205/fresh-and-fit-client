@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { Orbitals } from "react-spinners-css";
 
 const Dashboard = () => {
     const { user } = useAuth();
@@ -16,7 +17,7 @@ const Dashboard = () => {
     });
 
     if (isUserLoading) {
-        return <p>Loading...</p>;
+        return <div className="text-center"><Orbitals color="#FF0000" size={32} /></div>
     }
 
     const navLinks = [
