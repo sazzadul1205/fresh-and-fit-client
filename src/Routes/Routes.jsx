@@ -34,6 +34,7 @@ import NotFound from "../Pages/NotFound/NotFound";
 import RejectionMail from "../Dashboard/Admin/AppliedTrainer/RejectionMail/RejectionMail";
 import SendInstruction from "../Dashboard/Trainer/sendInstruction/sendInstruction";
 import MemberReject from "../Dashboard/Trainer/MemberReject/MemberReject";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -109,29 +110,29 @@ export const router = createBrowserRouter([
             // admin
             {
                 path: 'allSubscribers',
-                element: <AllSubscribers></AllSubscribers>
+                element: <AdminRoute><AllSubscribers></AllSubscribers></AdminRoute>
             },
             {
                 path: 'allTrainers',
-                element: <AllTrainers></AllTrainers>
+                element: <AdminRoute><AllTrainers></AllTrainers></AdminRoute>
             },
             {
                 path: 'trainerPayment/:id',
-                element: <TrainerPayment></TrainerPayment>,
+                element: <AdminRoute><TrainerPayment></TrainerPayment></AdminRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
             },
             {
                 path: 'appliedTrainer',
-                element: <AppliedTrainer></AppliedTrainer>
+                element: <AdminRoute><AppliedTrainer></AppliedTrainer></AdminRoute>
             },
             {
                 path: 'rejectedTrainer/:id',
-                element: <RejectionMail></RejectionMail>,
+                element: <AdminRoute><RejectionMail></RejectionMail></AdminRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/nTrainerRequest/${params.id}`)
             },
             {
                 path: 'balance',
-                element: <Balance></Balance>
+                element: <AdminRoute><Balance></Balance></AdminRoute>
             },
             // trainer
             {
