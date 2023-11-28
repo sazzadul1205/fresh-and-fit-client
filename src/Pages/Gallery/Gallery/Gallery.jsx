@@ -6,7 +6,7 @@ const Gallery = () => {
     return (
         <div>
             <Helmet>
-            <title>Fresh & Fit || Gallery</title>
+                <title>Fresh & Fit || Gallery</title>
             </Helmet>
             <div className={'pt-16'}>
                 <Title

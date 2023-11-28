@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddTestimonials = () => {
     const { user } = useAuth();
@@ -55,6 +56,9 @@ const AddTestimonials = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
+            <Helmet>
+                <title>Fresh & Fit || Add Testimonial</title>
+            </Helmet>
             <div className="w-[500px] bg-white p-8 rounded shadow-lg">
                 <h1 className="text-3xl font-bold text-red-500 text-center mb-5">
                     Your Testimonial

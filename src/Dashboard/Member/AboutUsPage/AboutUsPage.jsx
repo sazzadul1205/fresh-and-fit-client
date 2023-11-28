@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import avatar1 from "../../../assets/defaultTrainer/trainer-1.avif"
 import avatar2 from "../../../assets/defaultTrainer/trainer-2.avif"
@@ -30,6 +31,9 @@ const AboutUsPage = () => {
     ];
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || About US</title>
+            </Helmet>
             <Title title={"About Us"} />
             <div className="mx-10">
                 <section className="bg-gray-800 text-white py-20">

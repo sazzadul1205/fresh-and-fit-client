@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import Title from "../../../Pages/Shared/PageTitles/Title";
+import { Helmet } from "react-helmet-async";
 
 
 const AddNewClasses = () => {
@@ -51,6 +52,9 @@ const AddNewClasses = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Add New Classes</title>
+            </Helmet>
             <div>
                 <Title
                     title={'Create a New Fitness Class'}

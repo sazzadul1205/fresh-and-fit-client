@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import Title from '../../../Pages/Shared/PageTitles/Title';
+import { Helmet } from 'react-helmet-async';
 
 const AppliedTrainer = () => {
     const [trainerInfo, setTrainerInfo] = useState(null)
@@ -122,6 +123,9 @@ const AppliedTrainer = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Applied Trainers</title>
+            </Helmet>
             <div>
                 <Title title="Applied Trainers" />
             </div>

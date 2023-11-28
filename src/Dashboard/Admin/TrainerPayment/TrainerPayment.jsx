@@ -3,6 +3,7 @@ import Title from "../../../Pages/Shared/PageTitles/Title";
 import { motion } from "framer-motion";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const TrainerPayment = () => {
     const navigate = useNavigate()
@@ -83,6 +84,9 @@ const TrainerPayment = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Trainers Payment</title>
+            </Helmet>
             <Title title={`Trainer Payment - ${fullName}`} />
             <div>
                 <div className="card w-96 bg-red-500 shadow-xl mx-auto">

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const Classes = () => {
     const { user } = useAuth();
@@ -27,6 +28,9 @@ const Classes = () => {
 
     return (
         <div className="pt-20">
+            <Helmet>
+                <title>Fresh & Fit || Classes</title>
+            </Helmet>
             <div>
                 <Title
                     title={'Discover and Join Fitness Classes'}
@@ -39,7 +43,7 @@ const Classes = () => {
             <div>
                 <AllClasses></AllClasses>
             </div>
-            {isAdminOrTrainer && (
+            {user && isAdminOrTrainer && (
                 <div>
                     <Link to={'/addClasses'} className="flex justify-center items-center mt-8">
                         <motion.input

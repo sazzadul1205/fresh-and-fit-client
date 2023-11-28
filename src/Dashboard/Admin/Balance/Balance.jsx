@@ -4,6 +4,7 @@ import { FaBalanceScale } from "react-icons/fa";
 import BalanceChart from "./BalanceChart";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
+import { Helmet } from "react-helmet-async";
 
 
 const Balance = () => {
@@ -35,6 +36,9 @@ const Balance = () => {
     return (
         <div>
             <div>
+                <Helmet>
+                    <title>Fresh & Fit || Balance</title>
+                </Helmet>
                 <Title title={"Balance"}></Title>
             </div>
             <div className="flex flex-col md:flex-row gap-5 ml-28">

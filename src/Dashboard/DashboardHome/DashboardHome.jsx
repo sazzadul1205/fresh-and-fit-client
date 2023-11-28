@@ -3,6 +3,7 @@ import Title from "../../Pages/Shared/PageTitles/Title";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const DashboardHome = () => {
     const { user } = useAuth();
@@ -24,13 +25,16 @@ const DashboardHome = () => {
 
     return (
         <div className="my-auto">
+            <Helmet>
+                <title>Fresh & Fit || Dashboard Home</title>
+            </Helmet>
             <Title
                 title="Welcome to Your Dashboard"
                 subTitle="Explore, manage, and stay connected."
             />
             <div className="text-2xl font-bold text-center text-red-500">
-                <p>Name: {user.displayName}</p>
-                <p>Role: {myAccount.role}</p>
+                <p className="text-3xl">Name: <span className="text-green-500">{user?.displayName}</span></p>
+                <p>My Role: <span className="text-green-600">{myAccount?.role}</span></p>
             </div>
 
             <div className="mt-60 flex gap-5 ml-10">

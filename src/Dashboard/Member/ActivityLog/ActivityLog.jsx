@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
+import { Helmet } from "react-helmet-async";
 
 const ActivityLog = () => {
     const axiosPublic = useAxiosPublic();
@@ -43,7 +44,10 @@ const ActivityLog = () => {
     };
 
     return (
-        <div>
+        <div className="mb-2">
+            <Helmet>
+                <title>Fresh & Fit || Activity Log</title>
+            </Helmet>
             <div>
                 <Title
                     title="Activity Log"
@@ -51,48 +55,48 @@ const ActivityLog = () => {
                 />
             </div>
             <div>
-                <h1 className="text-center text-2xl font-semibold text-red-700 mb-5">
-                    Your Trainers:{" "}
+                <h1 className="text-center text-3xl font-semibold text-green-500 mb-5">
+                    My Trainers:{" "}
                 </h1>
                 <table className="table-auto mx-auto w-[800px] text-black bg-gray-800">
                     <thead>
-                        <tr className="bg-red-500">
+                        <tr className="bg-green-500">
                             <th className="px-4 py-2">ID</th>
                             <th className="px-4 py-2">Trainer Name</th>
                             <th className="px-4 py-2">Trainer Email</th>
-                            <th className="px-4 py-2">Plan</th>
+                            <th className="px-4 py-">Plan</th>
                         </tr>
                     </thead>
                     <tbody>
                         {myTrainers.map((trainer, index) => (
-                            <tr key={trainer._id} className="text-xl mb-3">
+                            <tr key={trainer._id} className="text-xl mb-3 bg-white text-center">
                                 <td>{index + 1}</td>
                                 <td>{trainer.trainer}</td>
                                 <td>{trainer.trainerEmail}</td>
-                                <td>{trainer.selectedPlan}</td>
+                                <td className="text-red-500 font-bold">{trainer.selectedPlan}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
             <div>
-                <h1 className="text-center text-2xl font-semibold text-red-700 mb-5 mt-10">
+                <h1 className="text-center text-3xl font-semibold text-yellow-500 mb-5 mt-10">
                     Your Routine:{" "}
                 </h1>
                 <table className="table text-black mx-auto w-[800px] bg-gray-800">
-                    <thead className="bg-red-500 text-black">
-                        <tr>
+                    <thead className="bg-yellow-500 text-black ">
+                        <tr className="text-center">
                             <th>Slot Number</th>
                             <th>Time</th>
-                            <th>Trainer</th>
+                            <th>Trainer Name</th>
                         </tr>
                     </thead>
                     <tbody>
                         {calculateAvailableSlots().map((slot) => (
-                            <tr key={slot.slotNumber}>
+                            <tr key={slot.slotNumber} className="bg-white text-center">
                                 <td>{slot.slotNumber}</td>
-                                <td>{slot.time}</td>
-                                <td className="text-2xl">{slot.trainer}</td>
+                                <td className="font-bold">{slot.time}</td>
+                                <td className="text-xl text-red-500 font-semibold">{slot.trainer}</td>
                             </tr>
                         ))}
                     </tbody>

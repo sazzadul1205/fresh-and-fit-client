@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 
 const AllSubscribers = () => {
@@ -19,6 +20,9 @@ const AllSubscribers = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || All Subscribers</title>
+            </Helmet>
             <Title
                 title={"News Letter Subscribers Management"}
             ></Title>
@@ -32,7 +36,7 @@ const AllSubscribers = () => {
                 </thead>
                 <tbody>
                     {newsLetter.map((subscriber, index) => (
-                        <tr key={subscriber.id}>
+                        <tr key={subscriber.id} className="bg-gray-200">
                             <td className="border px-4 py-2">{index + 1}</td>
                             <td className="border px-4 py-2">{subscriber.email}</td>
                             <td className="border px-4 py-2">{subscriber.name}</td>

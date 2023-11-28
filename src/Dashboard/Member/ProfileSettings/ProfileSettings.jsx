@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ProfileSettings = () => {
     const { user, updateUser, updateUserPassword } = useAuth();
@@ -54,6 +55,9 @@ const ProfileSettings = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Profile Settings</title>
+            </Helmet>
             <Title title={'My Account Setting'} />
             <div className="bg-gray-300 min-h-screen flex flex-row items-center justify-center">
 
@@ -175,7 +179,7 @@ const ProfileSettings = () => {
                         </div>
                         <div className="flex justify-center items-center mt-4">
                             <motion.input
-                                className={`w-full p-3 bg-red-500 hover:bg-red-800 disabled:bg-gray-500 rounded-xl`}
+                                className={`w-full p-3 bg-red-500 hover:bg-red-800 text-black rounded-xl`}
                                 type='submit'
                                 value={'Update Profile'}
                                 whileHover={{ scale: 1.2 }}

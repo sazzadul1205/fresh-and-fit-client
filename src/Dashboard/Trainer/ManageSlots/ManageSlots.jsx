@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
+import { Helmet } from "react-helmet-async";
 
 const ManageSlots = () => {
     const { user } = useAuth();
@@ -46,13 +47,16 @@ const ManageSlots = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Manage Slots</title>
+            </Helmet>
             <div>
                 <Title title="Manage Your Slots"></Title>
             </div>
             <div className="overflow-x-auto mx-20">
                 <table className="table text-black bg-gray-700">
                     <thead>
-                        <tr>
+                        <tr className="bg-red-500 text-white">
                             <th>Slot Number</th>
                             <th>Time</th>
                             <th>Status</th>

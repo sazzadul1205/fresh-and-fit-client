@@ -13,16 +13,7 @@ const Forms = () => {
     const [disabledButtons, setDisabledButtons] = useState([]);
     const formsPerPage = 6;
 
-    const { data: formsCount = [] } = useQuery({
-        queryKey: ['formsCount'],
-        queryFn: async () => {
-            const res = await axiosPublic.get(`/formsCount`);
-            return res.data;
-        }
-    });
-
-
-    const { data: forms = [], refetch: refetchForms, error, isLoading } = useQuery({
+    const { data: forms = [], refetch: refetchForms, isLoading: isLoadingForms } = useQuery({
         queryKey: ['forms', currentPage, formsPerPage],
         queryFn: async () => {
             const res = await axiosPublic.get(`/forms?page=${currentPage}&size=${formsPerPage}`);
@@ -30,13 +21,16 @@ const Forms = () => {
         }
     });
 
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
+    const { data: formsCount = [], isLoading: isLoadingFormsCount } = useQuery({
+        queryKey: ['formsCount'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/formsCount`);
+            return res.data;
+        }
+    });
 
-    if (error) {
-        console.error("Error fetching forms:", error);
-        return <p>Error fetching forms: {error.message}</p>;
+    if (isLoadingForms && isLoadingFormsCount) {
+        return <p>Loading...</p>;
     }
 
     const numberOfPages = Math.ceil(formsCount.count / formsPerPage);

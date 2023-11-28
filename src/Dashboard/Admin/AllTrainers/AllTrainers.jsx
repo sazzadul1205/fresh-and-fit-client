@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AllTrainers = () => {
     const axiosPublic = useAxiosPublic();
@@ -21,6 +22,9 @@ const AllTrainers = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || All Trainers</title>
+            </Helmet>
             <div>
                 <Title
                     title="All Trainers"
@@ -39,27 +43,29 @@ const AllTrainers = () => {
                     </thead>
                     <tbody>
                         {trainers.map((trainer, index) => (
-                            <tr key={trainer._id} className="text-xl mb-3">
+                            <tr key={trainer._id} className="text-xl mb-3 bg-gray-300">
                                 <td>{index + 1}</td>
                                 <td>{trainer.fullName}</td>
                                 <td>{trainer.joinedDate}</td>
-                                <td>{trainer.paymentStatus === "pending" ? (
-                                    <Link to={`/dashboard/trainerPayment/${trainer._id}`}>
-                                        <motion.input
-                                            className={`w-full p-2 bg-red-500 hover:bg-red-800 disabled:bg-gray-500 rounded-xl`}
-                                            type="submit"
-                                            value="Pay"
-                                            whileHover={{ scale: 1.2 }}
-                                            whileTap={{ scale: 0.9 }}
-                                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                        />
-                                    </Link>
-                                ) : (
-                                    <h1 className="text-center text-black bg-gray-500 rounded-xl p-2">Paid</h1>
-                                )}
+                                <td className="text-center flex items-center justify-center">
+                                    {trainer.paymentStatus === "pending" ? (
+                                        <Link to={`/dashboard/trainerPayment/${trainer._id}`}>
+                                            <motion.input
+                                                className={`w-40 p-2  bg-red-500 hover:bg-red-800 rounded-xl`}
+                                                type="submit"
+                                                value="Pay"
+                                                whileHover={{ scale: 1.2 }}
+                                                whileTap={{ scale: 0.9 }}
+                                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                            />
+                                        </Link>
+                                    ) : (
+                                        <h1 className="w-40 text-black bg-gray-500 rounded-xl p-2">Paid</h1>
+                                    )}
                                 </td>
                             </tr>
                         ))}
+
                     </tbody>
                 </table>
             </div>

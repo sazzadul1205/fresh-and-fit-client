@@ -30,12 +30,13 @@ import ProfileSettings from "../Dashboard/Member/ProfileSettings/ProfileSettings
 import RecClassesPage from "../Dashboard/Member/RecClassesPage/RecClassesPage";
 import AddTestimonials from "../Dashboard/Member/AddTestimonials/AddTestimonials";
 import AboutUsPage from "../Dashboard/Member/AboutUsPage/AboutUsPage";
+import NotFound from "../Pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <PublicLayout></PublicLayout>,
-        // errorElement: <NotFound></NotFound>,
+        errorElement: <NotFound></NotFound>,
         children: [
             {
                 path: '/',
@@ -51,12 +52,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/trainer/:id',
-                element: <TrainerDetails></TrainerDetails>,
+                element: <PrivateRoutes><TrainerDetails></TrainerDetails></PrivateRoutes>,
                 loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
             },
             {
                 path: '/trainerBooking/:id',
-                element: <TrainerBooked></TrainerBooked>,
+                element: <PrivateRoutes><TrainerBooked></TrainerBooked></PrivateRoutes>,
                 loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
             },
             {
@@ -92,7 +93,7 @@ export const router = createBrowserRouter([
     },
     {
         path: `/dashboard`,
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
             {
                 path: '/dashboard',

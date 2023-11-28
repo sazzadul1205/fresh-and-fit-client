@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddNewForm = () => {
     const { register, handleSubmit } = useForm();
@@ -58,6 +59,9 @@ const AddNewForm = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Add New Form</title>
+            </Helmet>
             <div>
                 <Title
                     title="Add New Class"

@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageMember = () => {
     const { user } = useAuth();
@@ -44,6 +45,9 @@ const ManageMember = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Fresh & Fit || Manage Members</title>
+            </Helmet>
             <div>
                 <Title
                     title="Manage Members"
@@ -53,7 +57,7 @@ const ManageMember = () => {
             <div className="overflow-x-auto mx-20">
                 <table className="table text-black bg-gray-700">
                     <thead>
-                        <tr>
+                        <tr className="bg-red-500 text-white text-center">
                             <th>Booker Name</th>
                             <th>Email</th>
                             <th>Selected Plan</th>
@@ -64,7 +68,7 @@ const ManageMember = () => {
                     </thead>
                     <tbody>
                         {trainerBookings.map((member) => (
-                            <tr key={member._id}>
+                            <tr key={member._id} className="text-center">
                                 <td>{member.bookerName}</td>
                                 <td>{member.bookerEmail}</td>
                                 <td>{member.selectedPlan}</td>
