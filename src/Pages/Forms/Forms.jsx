@@ -40,7 +40,7 @@ const Forms = () => {
         },
     });
 
-    if (isLoadingForms && isLoadingFormsCount && isLoadingUsers) {
+    if (isLoadingForms || isLoadingFormsCount || isLoadingUsers) {
         return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
