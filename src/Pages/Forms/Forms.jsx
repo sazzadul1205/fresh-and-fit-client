@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import Title from "../Shared/PageTitles/Title";
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
+import adminBaj from '../../assets/adminbaj.png'
+import trainerBaj from '../../assets/trainerbaj.png'
 
 const Forms = () => {
     const axiosPublic = useAxiosPublic();
@@ -29,7 +31,15 @@ const Forms = () => {
         }
     });
 
-    if (isLoadingForms && isLoadingFormsCount) {
+    const { data: users = [], isLoading: isLoadingUsers } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/users`);
+            return res.data;
+        },
+    });
+
+    if (isLoadingForms || isLoadingFormsCount || isLoadingUsers) {
         return <p>Loading...</p>;
     }
 
@@ -50,6 +60,10 @@ const Forms = () => {
         }
     }
 
+    const userRoleMap = {};
+    users.forEach((user) => {
+        userRoleMap[user.email] = user.role;
+    });
 
     const handleLike = async (formId) => {
         if (!disabledButtons.includes(formId)) {
@@ -77,14 +91,19 @@ const Forms = () => {
                 />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {
-                    forms.map((form) => (
-                        <div key={form._id} className="card bg-primary text-primary-content">
-                            <div className="card-body">
+                {forms.map((form) => (
+                    <div key={form._id} className="card text-primary-content bg-gray-400">
+                        <div className="card-body flex">
+                            <div className='flex'>
                                 <h2 className="card-title">{form.title}</h2>
+                                {userRoleMap[form.email] === 'admin' && <img src={adminBaj} alt="" className="mr-4 w-10" />}
+                                {userRoleMap[form.email] === 'trainer' && <img src={trainerBaj} alt="" className="mr-4 w-10" />}
+
+                            </div>
+                            <div>
                                 <p>{form.content}</p>
                                 <div className="flex justify-between items-center mt-4">
-                                    <span className="text-gray-500">Posted by: {form.sender}</span>
+                                    <span className="text-red-500 font-bold">Posted by: {form.sender}</span>
                                 </div>
                                 <div className="flex space-x-2 mt-2">
                                     <motion.input
@@ -110,8 +129,9 @@ const Forms = () => {
                                 </div>
                             </div>
                         </div>
-                    ))
-                }
+                    </div>
+
+                ))}
             </div>
             <div className="join mt-10 " style={{ display: 'flex', justifyContent: 'center' }}>
                 <button onClick={handlePrevPage} className="join-item btn">«</button>
@@ -123,7 +143,6 @@ const Forms = () => {
                     >
                         {page + 1}
                     </button>
-
                 ))}
                 <button onClick={handleNextPage} className="join-item btn">»</button>
             </div>

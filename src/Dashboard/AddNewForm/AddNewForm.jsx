@@ -11,6 +11,15 @@ const AddNewForm = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
 
+    const currentDate = new Date();
+    const formattedDateTime = currentDate.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    });
     const onSubmit = (data) => {
         const form = {
             title: data.title,
@@ -18,6 +27,8 @@ const AddNewForm = () => {
             sender: user.displayName,
             likes: 0,
             dislikes: 0,
+            email: user.email,
+            submittedAt: formattedDateTime,
         };
 
         axiosPublic
@@ -50,7 +61,7 @@ const AddNewForm = () => {
             icon: 'error',
             title: 'Class Creation Failed',
             text: errorMessage,
-            confirmButtonText: 'OK', 
+            confirmButtonText: 'OK',
             onClose: () => {
                 console.log('User clicked OK');
             },

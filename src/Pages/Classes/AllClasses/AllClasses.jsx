@@ -36,7 +36,7 @@ const AllClasses = () => {
         }
     });
 
-    if (isLoadingClasses && isLoadingClassesCount) {
+    if (isLoadingClasses || isLoadingClassesCount) {
         return <p>Loading...</p>;
     }
 

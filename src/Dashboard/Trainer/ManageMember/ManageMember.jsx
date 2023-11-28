@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
-import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 
 const ManageMember = () => {
     const { user } = useAuth();
@@ -24,24 +26,6 @@ const ManageMember = () => {
         return <p>Loading...</p>;
     }
 
-    const sendInstructionsByEmail = (memberEmail) => {
-        // You can customize the SweetAlert message here
-        Swal.fire({
-            title: "Send Instructions",
-            text: `Are you sure you want to send instructions to ${memberEmail}?`,
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonText: "Yes, send it!",
-            cancelButtonText: "No, cancel",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Add logic to send instructions via email
-                console.log(`Sending instructions to ${memberEmail}`);
-                // You can integrate with a service like SendGrid or your backend for sending emails
-                Swal.fire("Instructions Sent!", "", "success");
-            }
-        });
-    };
 
     return (
         <div>
@@ -54,7 +38,7 @@ const ManageMember = () => {
                     subTitle="View and manage your members in a tabular format."
                 />
             </div>
-            <div className="overflow-x-auto mx-20">
+            <div className="overflow-x-auto mx-5">
                 <table className="table text-black bg-gray-700">
                     <thead>
                         <tr className="bg-red-500 text-white text-center">
@@ -64,6 +48,7 @@ const ManageMember = () => {
                             <th>Selected Slot</th>
                             <th>Price</th>
                             <th>Action</th>
+                            <th>Reject</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,14 +60,28 @@ const ManageMember = () => {
                                 <td>{member.selectedSlot}</td>
                                 <td>{member.price}</td>
                                 <td>
-                                    <button
-                                        className="btn"
-                                        onClick={() =>
-                                            sendInstructionsByEmail(member.bookerEmail)
-                                        }
-                                    >
-                                        Send Instructions
-                                    </button>
+                                    <Link to={`/dashboard/sendInstruction/${member._id}`}>
+                                        <motion.input
+                                            className={`w-32 p-3 bg-green-500 hover:bg-green-800  rounded-xl text-center`}
+                                            type="submit"
+                                            value="Send Instruction"
+                                            whileHover={{ scale: 1.2 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                        />
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link to={`/dashboard/memberRejection/${member._id}`}>
+                                        <motion.input
+                                            className={`w-24 p-3 bg-red-500 hover:bg-red-800  rounded-xl`}
+                                            type="submit"
+                                            value="Reject"
+                                            whileHover={{ scale: 1.2 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                        />
+                                    </Link>
                                 </td>
                             </tr>
                         ))}

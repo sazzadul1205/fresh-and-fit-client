@@ -33,6 +33,7 @@ const Dashboard = () => {
         { to: "recClassesPage", label: "Recommended Classes Page" },
         { to: "addTestimonials", label: "Add Testimonials" },
         { to: "aboutUs", label: "About Us" },
+        { to: "addNewForum", label: "Add new Forum" },
     ];
 
     const trainerNavLink = [

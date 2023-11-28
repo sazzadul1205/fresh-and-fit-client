@@ -31,6 +31,9 @@ import RecClassesPage from "../Dashboard/Member/RecClassesPage/RecClassesPage";
 import AddTestimonials from "../Dashboard/Member/AddTestimonials/AddTestimonials";
 import AboutUsPage from "../Dashboard/Member/AboutUsPage/AboutUsPage";
 import NotFound from "../Pages/NotFound/NotFound";
+import RejectionMail from "../Dashboard/Admin/AppliedTrainer/RejectionMail/RejectionMail";
+import SendInstruction from "../Dashboard/Trainer/sendInstruction/sendInstruction";
+import MemberReject from "../Dashboard/Trainer/MemberReject/MemberReject";
 
 export const router = createBrowserRouter([
     {
@@ -105,11 +108,11 @@ export const router = createBrowserRouter([
             },
             // admin
             {
-                path: 'allSubscribers', 
+                path: 'allSubscribers',
                 element: <AllSubscribers></AllSubscribers>
             },
             {
-                path: 'allTrainers', 
+                path: 'allTrainers',
                 element: <AllTrainers></AllTrainers>
             },
             {
@@ -120,6 +123,11 @@ export const router = createBrowserRouter([
             {
                 path: 'appliedTrainer',
                 element: <AppliedTrainer></AppliedTrainer>
+            },
+            {
+                path: 'rejectedTrainer/:id',
+                element: <RejectionMail></RejectionMail>,
+                loader: ({ params }) => fetch(`http://localhost:5000/nTrainerRequest/${params.id}`)
             },
             {
                 path: 'balance',
@@ -133,6 +141,16 @@ export const router = createBrowserRouter([
             {
                 path: 'manageMember',
                 element: <ManageMember></ManageMember>
+            },
+            {
+                path: 'sendInstruction/:id',
+                element: <SendInstruction></SendInstruction>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+            },
+            {
+                path: 'memberRejection/:id',
+                element: <MemberReject></MemberReject>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
             {
                 path: 'addNewClasses',
@@ -159,7 +177,7 @@ export const router = createBrowserRouter([
                 path: 'aboutUs',
                 element: <AboutUsPage></AboutUsPage>
             },
-            
+
 
         ]
     }

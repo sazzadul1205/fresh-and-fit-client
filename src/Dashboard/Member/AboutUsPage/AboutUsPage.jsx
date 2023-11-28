@@ -35,7 +35,7 @@ const AboutUsPage = () => {
                 <title>Fresh & Fit || About US</title>
             </Helmet>
             <Title title={"About Us"} />
-            <div className="mx-10">
+            <div className="mx-10 text-black">
                 <section className="bg-gray-800 text-white py-20">
                     <div className="container mx-auto text-center">
                         <h2 className="text-4xl font-bold mb-4">Who We Are</h2>

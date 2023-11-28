@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import Title from '../../../Pages/Shared/PageTitles/Title';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 const AppliedTrainer = () => {
     const [trainerInfo, setTrainerInfo] = useState(null)
@@ -20,6 +21,7 @@ const AppliedTrainer = () => {
     }
 
     const [selectedTrainer, setSelectedTrainer] = useState(null);
+    console.log(selectedTrainer);
 
     const openModal = (trainer) => {
         setTrainerInfo(trainer)
@@ -103,7 +105,6 @@ const AppliedTrainer = () => {
 
 
     const showSuccessAlert = () => {
-        // Show success notification
         Swal.fire({
             icon: 'success',
             title: 'Trainer Confirmed!',
@@ -113,7 +114,6 @@ const AppliedTrainer = () => {
     };
 
     const showErrorAlert = (errorMessage) => {
-        // Show error notification
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -142,7 +142,7 @@ const AppliedTrainer = () => {
                     </thead>
                     <tbody>
                         {nTrainerRequest.map((trainer, index) => (
-                            <tr key={trainer._id} className="text-xl mb-3 text-center">
+                            <tr key={trainer._id} className="text-xl mb-3 text-center bg-gray-600">
                                 <td>{index + 1}</td>
                                 <td>{trainer.fullName}</td>
                                 <td>{trainer.email}</td>
@@ -175,12 +175,17 @@ const AppliedTrainer = () => {
                                 Confirm
                             </button>
                             {/* Reject button (bonus section) */}
-                            <button onClick={closeModal} className="btn bg-red-500 ml-2">
-                                Reject
-                            </button>
+                            <Link to={`/dashboard/rejectedTrainer/${selectedTrainer && selectedTrainer._id}`}>
+                                <button onClick={closeModal} className="btn bg-red-500 ml-2">
+                                    Reject
+                                </button>
+                            </Link>
+
+
                         </div>
                     </div>
                 </dialog>
+
             </div>
         </div>
     );
