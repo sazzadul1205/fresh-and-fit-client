@@ -25,14 +25,14 @@ const Dashboard = () => {
         { to: "/trainer", label: "Trainer" },
         { to: "/classes", label: "Classes" },
         { to: "/forms", label: "Forms" },
-    ]
+    ];
 
     const userNavLink = [
         { to: "activityLog", label: "Activity Log" },
         { to: "profileSettings", label: "Profile Settings" },
         { to: "recClassesPage", label: "Recommended Classes Page" },
-        { to: "", label: "dummy-1" },
-        { to: "", label: "dummy-2" },
+        { to: "addTestimonials", label: "Add Testimonials" },
+        { to: "aboutUs", label: "About Us" },
     ];
 
     const trainerNavLink = [
@@ -121,9 +121,9 @@ const Dashboard = () => {
     ));
 
     return (
-        <div className="max-w-screen-xl mx-auto flex">
+        <div className="flex w-[1200px] mx-auto">
             {/* Dashboard side bar */}
-            <div className="w-64 min-h-screen bg-red-500 pt-10">
+            <div className="w-64 min-h-screen bg-red-500 pt-10 fixed">
                 <h1 className="text-center text-2xl font-bold text-blue-800 ">Dashboard</h1>
                 <ul className="menu p-4">
                     <ul className="menu menu-vertical px-1 text-blue-800 ">
@@ -141,7 +141,7 @@ const Dashboard = () => {
                 </ul>
             </div>
             {/* Dashboard Content */}
-            <div className="flex-1">
+            <div className="flex-1 ml-64 overflow-y-auto bg-gray-500 min-h-screen">
                 <Outlet></Outlet>
             </div>
         </div>

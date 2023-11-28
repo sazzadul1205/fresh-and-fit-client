@@ -27,6 +27,9 @@ import AddNewForm from "../Dashboard/AddNewForm/AddNewForm";
 import AddNewClasses from "../Dashboard/Trainer/AddNewClasses/AddNewClasses";
 import ActivityLog from "../Dashboard/Member/ActivityLog/ActivityLog";
 import ProfileSettings from "../Dashboard/Member/ProfileSettings/ProfileSettings";
+import RecClassesPage from "../Dashboard/Member/RecClassesPage/RecClassesPage";
+import AddTestimonials from "../Dashboard/Member/AddTestimonials/AddTestimonials";
+import AboutUsPage from "../Dashboard/Member/AboutUsPage/AboutUsPage";
 
 export const router = createBrowserRouter([
     {
@@ -142,7 +145,19 @@ export const router = createBrowserRouter([
             {
                 path: 'profileSettings',
                 element: <ProfileSettings></ProfileSettings>
-            }
+            },
+            {
+                path: 'recClassesPage',
+                element: <RecClassesPage></RecClassesPage>
+            },
+            {
+                path: 'addTestimonials',
+                element: <AddTestimonials></AddTestimonials>
+            },
+            {
+                path: 'aboutUs',
+                element: <AboutUsPage></AboutUsPage>
+            },
             
 
         ]

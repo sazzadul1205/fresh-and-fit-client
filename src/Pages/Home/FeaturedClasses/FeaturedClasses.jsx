@@ -1,15 +1,21 @@
+import { useQuery } from "@tanstack/react-query";
 import Title from "../../Shared/PageTitles/Title";
+import { motion } from "framer-motion";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const FeaturedClasses = () => {
-    // Dummy data for illustration
-    const featuredClasses = [
-        { id: 1, title: 'High-Intensity Interval Training', members: 120 },
-        { id: 2, title: 'Yoga for Beginners', members: 95 },
-        { id: 3, title: 'Cardio Kickboxing', members: 80 },
-        { id: 4, title: 'Strength Training Essentials', members: 110 },
-        { id: 5, title: 'Mindful Meditation', members: 60 },
-        { id: 6, title: 'Dance Fitness Fusion', members: 75 },
-    ];
+    const axiosPublic = useAxiosPublic();
+
+    const { data: classes = [] } = useQuery({
+        queryKey: ['classes'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/classes`);
+            return res.data;
+        }
+    });
+
+    // Limit the number of displayed classes to a maximum of 6
+    const displayedClasses = classes.slice(0, 6);
 
     return (
         <>
@@ -18,15 +24,21 @@ const FeaturedClasses = () => {
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold mb-8">✨ Featured Classes</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {featuredClasses.map((classItem) => (
+                        {displayedClasses.map((classItem) => (
                             <div key={classItem.id} className="bg-white p-4 rounded-md shadow-md">
-                                <h3 className="text-xl font-semibold mb-2">{classItem.title}</h3>
+                                <h3 className="text-xl font-semibold mb-2">{classItem.className}</h3>
+                                <p className="">{classItem.classDescription}</p>
                                 <p className="text-gray-600 mb-4">
-                                    Members: {classItem.members}
+                                    Members: {classItem.memberCount}
                                 </p>
-                                <button className="bg-blue-500 text-white py-2 px-4 rounded-md">
-                                    Join Now
-                                </button>
+                                <motion.input
+                                    className={`w-1/3 text-center p-3 bg-blue-500 hover:bg-blue-800 disabled:bg-gray-500 rounded-xl`}
+                                    type="submit"
+                                    value="Join Now"
+                                    whileHover={{ scale: 1.2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                />
                             </div>
                         ))}
                     </div>
