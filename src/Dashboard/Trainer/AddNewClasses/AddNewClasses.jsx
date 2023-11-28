@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const AddNewClasses = () => {
     const { register, handleSubmit } = useForm();
     const { user } = useAuth();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const onSubmit = (data) => {
         const classInfo = {
@@ -21,7 +21,7 @@ const AddNewClasses = () => {
             classTime: `${data.classStart} - ${data.classEnd}`,
         };
 
-        axiosPublic
+        axiosSecure
             .post('/classes', classInfo)
             .then((res) => {
                 if (res.data.insertedId) {

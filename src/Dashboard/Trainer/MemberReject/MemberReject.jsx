@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import emailjs from '@emailjs/browser';
 import Swal from "sweetalert2";
 import { motion } from 'framer-motion';
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 
@@ -15,7 +15,7 @@ const MemberReject = () => {
     const { register, handleSubmit } = useForm();
     const { _id, bookerEmail, bookerName } = useLoaderData();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
     const mail = `I hope this message finds you well. Thank you for considering me as your fitness trainer and for submitting a booking request. I appreciate your interest in working with me.
@@ -62,7 +62,7 @@ const MemberReject = () => {
         .then(
             (res) => {
                 console.log('SUCCESS!', res.status, res.text);
-                return axiosPublic.delete(`/bookings/${_id}`);
+                return axiosSecure.delete(`/bookings/${_id}`);
             }
         )
         .then(() => {

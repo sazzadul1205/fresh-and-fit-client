@@ -1,26 +1,29 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
-import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import Title from '../../../Pages/Shared/PageTitles/Title';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { Orbitals } from 'react-spinners-css';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const AppliedTrainer = () => {
     const [trainerInfo, setTrainerInfo] = useState(null)
-    const axiosPublic = useAxiosPublic();
+    const [selectedTrainer, setSelectedTrainer] = useState(null);
+    const axiosSecure = useAxiosSecure()
+
     const { data: nTrainerRequest = [], isLoading, refetch } = useQuery({
         queryKey: ['nTrainerRequest'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/nTrainerRequest`);
+            const res = await axiosSecure.get(`/nTrainerRequest`);
             return res.data;
         }
     });
     if (isLoading) {
-        <p>Loading ...</p>
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
-    const [selectedTrainer, setSelectedTrainer] = useState(null);
+    
     console.log(selectedTrainer);
 
     const openModal = (trainer) => {
@@ -70,15 +73,15 @@ const AppliedTrainer = () => {
             joinedDate: formattedDateTime,
         };
         console.log(newTrainerInfo);
-        axiosPublic
+        axiosSecure
             .post('/trainers', newTrainerInfo)
             .then((res) => {
                 if (res.data.insertedId) {
                     showSuccessAlert();
-                    axiosPublic
+                    axiosSecure
                         .delete(`/nTrainerRequest/${trainerInfo._id}`)
                         .then(() => {
-                            axiosPublic
+                            axiosSecure
                                 .patch(`/users?email=${trainerInfo.email}`)
                                 .then((res) => {
                                     if (res.data.insertedId) {

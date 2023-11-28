@@ -3,17 +3,23 @@ import Title from "../../Shared/PageTitles/Title";
 import { motion } from "framer-motion";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Orbitals } from 'react-spinners-css';
 
 const FeaturedClasses = () => {
     const axiosPublic = useAxiosPublic();
 
-    const { data: classes = [] } = useQuery({
+    const { data: classes = [], isLoading } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/classes`);
             return res.data;
         }
     });
+
+    if (isLoading) {
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
+
+    }
 
     const handleCardClick = (classId, className) => {
         Swal.fire({
@@ -24,7 +30,6 @@ const FeaturedClasses = () => {
         });
     };
 
-    // Limit the number of displayed classes to a maximum of 6
     const displayedClasses = classes.slice(0, 6);
 
     return (

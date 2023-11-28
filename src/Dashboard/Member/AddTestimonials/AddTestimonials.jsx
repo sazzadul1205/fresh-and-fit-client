@@ -3,13 +3,13 @@ import useAuth from "../../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AddTestimonials = () => {
     const { user } = useAuth();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const [rating, setRating] = useState(0);
     const { register, handleSubmit } = useForm();
 
@@ -23,7 +23,7 @@ const AddTestimonials = () => {
         };
         console.log(testimonialData);
 
-        axiosPublic
+        axiosSecure
             .post('/testimonials', testimonialData)
             .then((res) => {
                 if (res.data.insertedId) {

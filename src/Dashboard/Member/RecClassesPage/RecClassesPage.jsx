@@ -1,21 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import { Helmet } from "react-helmet-async";
+import { Orbitals } from "react-spinners-css";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const RecClassesPage = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { data: recClasses = [], isLoading: isLoadingRecClasses } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/classes`);
+            const res = await axiosSecure.get(`/classes`);
             return res.data;
         },
     });
 
     if (isLoadingRecClasses) {
-        return <p>Loading ...</p>
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
     // Randomly select 6 classes

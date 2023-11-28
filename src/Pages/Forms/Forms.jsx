@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
 import adminBaj from '../../assets/adminbaj.png'
 import trainerBaj from '../../assets/trainerbaj.png'
+import { Orbitals } from 'react-spinners-css';
 
 const Forms = () => {
     const axiosPublic = useAxiosPublic();
@@ -39,8 +40,8 @@ const Forms = () => {
         },
     });
 
-    if (isLoadingForms || isLoadingFormsCount || isLoadingUsers) {
-        return <p>Loading...</p>;
+    if (isLoadingForms && isLoadingFormsCount && isLoadingUsers) {
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
     const numberOfPages = Math.ceil(formsCount.count / formsPerPage);

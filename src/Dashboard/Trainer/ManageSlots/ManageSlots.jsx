@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Orbitals } from "react-spinners-css";
 
 const ManageSlots = () => {
     const { user } = useAuth();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { data: trainerData = [], isLoading: isLoadingTrainerData } = useQuery({
         queryKey: ['trainer'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/trainers?email=${user.email}`);
+            const res = await axiosSecure.get(`/trainers?email=${user.email}`);
             return res.data;
         }
     });
@@ -19,13 +20,13 @@ const ManageSlots = () => {
     const { data: trainerBookings = [], isLoading: isLoadingTrainerBookings } = useQuery({
         queryKey: ['bookings'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/bookings?trainerEmail=${user.email}`);
+            const res = await axiosSecure.get(`/bookings?trainerEmail=${user.email}`);
             return res.data;
         }
     });
 
     if (isLoadingTrainerData || isLoadingTrainerBookings) {
-        return <p>Loading...</p>;
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
     const { availableSlots, availableTimeWeek, availableTimeDay } = trainerData;

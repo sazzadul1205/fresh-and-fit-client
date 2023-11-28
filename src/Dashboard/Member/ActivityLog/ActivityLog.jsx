@@ -1,18 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Orbitals } from "react-spinners-css";
 
 const ActivityLog = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
     const { data: myTrainers = [], isLoading: isLoadingMyBookings } =
         useQuery({
             queryKey: ["bookings"],
             queryFn: async () => {
-                const res = await axiosPublic.get(
+                const res = await axiosSecure.get(
                     `/bookings?bookerEmail=${user.email}`
                 );
                 return res.data;
@@ -20,7 +21,7 @@ const ActivityLog = () => {
         });
 
     if (isLoadingMyBookings) {
-        return <p>Loading...</p>;
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
     console.log(myTrainers);
 

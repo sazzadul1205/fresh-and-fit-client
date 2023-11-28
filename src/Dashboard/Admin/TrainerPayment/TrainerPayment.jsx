@@ -1,14 +1,15 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import { motion } from "framer-motion";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const TrainerPayment = () => {
     const navigate = useNavigate()
     const { _id, email, fullName, joinedDate } = useLoaderData();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
+
     const currentDate = new Date();
     const formattedDateTime = currentDate.toLocaleString('en-US', {
         year: 'numeric',
@@ -38,11 +39,11 @@ const TrainerPayment = () => {
             monthsPayed: diffMonths,
         };
 
-        axiosPublic
+        axiosSecure
             .patch(`/trainers/${_id}`)
             .then((res) => {
                 if (res.data.modifiedCount > 0) {
-                    axiosPublic
+                    axiosSecure
                         .post('/payed', trainerPaymentInfo)
                         .then((res) => {
                             if (res.data.insertedId) {

@@ -8,7 +8,6 @@ import { Helmet } from "react-helmet-async";
 const ProfileSettings = () => {
     const { user, updateUser, updateUserPassword } = useAuth();
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
     const password = watch("password");
 
     const onSubmit = (data) => {

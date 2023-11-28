@@ -177,8 +177,6 @@ export const router = createBrowserRouter([
                 path: 'aboutUs',
                 element: <AboutUsPage></AboutUsPage>
             },
-
-
         ]
-    }
+    },
 ])

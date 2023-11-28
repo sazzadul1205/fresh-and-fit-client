@@ -7,6 +7,7 @@ import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
+import { Orbitals } from 'react-spinners-css';
 
 const Classes = () => {
     const { user } = useAuth();
@@ -20,7 +21,7 @@ const Classes = () => {
     });
 
     if (isUserLoading) {
-        return <p>Loading...</p>;
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
     // Check if the role is either admin or trainer

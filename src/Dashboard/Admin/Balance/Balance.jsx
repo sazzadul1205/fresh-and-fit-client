@@ -2,19 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 import { MdOutlinePayment } from "react-icons/md";
 import { FaBalanceScale } from "react-icons/fa";
 import BalanceChart from "./BalanceChart";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import { Helmet } from "react-helmet-async";
+import { Orbitals } from "react-spinners-css";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const Balance = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     // Call bookings
     const { data: adminBalances = [], isLoading: isLoadingAdminBalances } = useQuery({
         queryKey: ["adminBalances"],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/adminBalances`);
+            const res = await axiosSecure.get(`/adminBalances`);
             return res.data;
         },
     });
@@ -22,15 +23,15 @@ const Balance = () => {
     const { data: bookings = [], isLoading: isLoadingBookings } = useQuery({
         queryKey: ["bookings"],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/bookings`);
+            const res = await axiosSecure.get(`/bookings`);
             return res.data;
         },
     });
 
     // Check if any of the queries are still loading
-    const isLoading = isLoadingAdminBalances || isLoadingBookings;
+    const isLoading = isLoadingAdminBalances && isLoadingBookings;
     if (isLoading) {
-        return <p>Loading ... </p>;
+        return <div className="text-center"><Orbitals color="#FF0000" size={32} /></div>
     }
 
     return (

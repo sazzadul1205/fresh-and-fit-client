@@ -11,6 +11,7 @@ import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import { Orbitals } from 'react-spinners-css';
 
 const Testimonials = () => {
     const axiosPublic = useAxiosPublic();
@@ -24,7 +25,7 @@ const Testimonials = () => {
     });
 
     if (isLoadingTestimonials) {
-        <p>Loading ...</p>
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
     return (

@@ -5,12 +5,16 @@ import TrainerCard from "../TrainerCards/TrainerCards";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../../Hooks/useAuth";
+import { Orbitals } from "react-spinners-css";
 
 
 const Trainer = () => {
-    const [trainers] = useTrainers();
+    const [trainers, isLoading] = useTrainers();
     const { user } = useAuth();
 
+    if (isLoading) {
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
+    }
     return (
         <div>
             <Helmet>

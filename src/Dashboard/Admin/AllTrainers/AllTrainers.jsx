@@ -1,23 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Title from "../../../Pages/Shared/PageTitles/Title";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { Orbitals } from "react-spinners-css";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllTrainers = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { data: trainers = [], isLoading } = useQuery({
         queryKey: ['trainers'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/trainers`);
+            const res = await axiosSecure.get(`/trainers`);
             return res.data;
         }
     });
 
     if (isLoading) {
-        return <p>Loading ...</p>;
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
     return (

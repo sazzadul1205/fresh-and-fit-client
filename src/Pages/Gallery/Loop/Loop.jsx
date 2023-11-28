@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Orbitals } from 'react-spinners-css';
 
 const getImages = async ({ pageParam = 0 }) => {
     const res = await fetch(`http://localhost:5000/gallery?limit=12&offset=${pageParam}`);
@@ -14,7 +15,7 @@ const getImages = async ({ pageParam = 0 }) => {
 };
 
 const Loop = () => {
-    const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+    const { data, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
         queryKey: ['images'],
         queryFn: getImages,
         getNextPageParam: (lastPage) => {
@@ -24,6 +25,9 @@ const Loop = () => {
             return lastPage.prevOffset + 12;
         },
     });
+    if (isLoading) {
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
+    }
 
     const images = data?.pages.flatMap((page) => page.images);
 

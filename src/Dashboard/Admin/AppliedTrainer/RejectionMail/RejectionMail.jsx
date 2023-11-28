@@ -5,8 +5,8 @@ import emailjs from '@emailjs/browser';
 import useAuth from '../../../../Hooks/useAuth';
 import Title from '../../../../Pages/Shared/PageTitles/Title';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import useAxiosPublic from '../../../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 
 const RejectionMail = () => {
     const { user } = useAuth();
@@ -14,8 +14,8 @@ const RejectionMail = () => {
     const { register, handleSubmit } = useForm();
     const { _id, email, fullName } = useLoaderData();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure()
 
     const mail = `I hope this message finds you well. Thank you for expressing your interest in joining our team as a trainer at Fresh & Fit.
 
@@ -44,7 +44,7 @@ Thank you once again for considering Fresh & Fit as a platform for your skills a
             .then(
                 (res) => {
                     console.log('SUCCESS!', res.status, res.text);
-                    axiosPublic
+                    axiosSecure
                         .delete(`/nTrainerRequest/${_id}`)
                         .then(() => {
                             showSuccessAlert();
@@ -54,7 +54,7 @@ Thank you once again for considering Fresh & Fit as a platform for your skills a
                             console.log(error);
                             showErrorAlert('Failed to update user profile.');
                         });
-                    
+
                 },
                 (error) => {
                     console.log('FAILED...', error);

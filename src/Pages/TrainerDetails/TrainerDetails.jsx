@@ -52,7 +52,6 @@ const TrainerDetails = () => {
                     <p>Available Time in a Week: {availableTimeWeek.join(", ")}</p>
                     <p>Available Time in a Day: {availableTimeDay.join(", ")}</p>
 
-                    {/* Render social icons */}
                     <h3 className="mt-4 text-xl font-semibold">Connect with {fullName}</h3>
                     <div className="flex mt-2 gap-5">
                         <Link to={socialIcons.facebook} target="_blank">

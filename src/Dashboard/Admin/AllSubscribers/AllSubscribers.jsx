@@ -1,21 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import Title from "../../../Pages/Shared/PageTitles/Title";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
+import { Orbitals } from "react-spinners-css";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const AllSubscribers = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const { data: newsLetter = [], isLoading } = useQuery({
         queryKey: ['newsLetter'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/newsLetter`);
+            const res = await axiosSecure.get(`/newsLetter`);
             return res.data;
         }
     });
 
     if (isLoading) {
-        <p>Loading ...</p>
+        return <div className="text-center"><Orbitals color="#FF0000" size={32}/></div>
     }
 
     return (
