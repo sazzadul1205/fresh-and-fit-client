@@ -1,4 +1,3 @@
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Title from "../../Shared/PageTitles/Title";
 import { motion } from "framer-motion";
@@ -53,7 +52,8 @@ const FeaturedClasses = () => {
                     trainerName: trainerName,
                     email: user.email,
                     classId: classId,
-                    dateTime: formattedDateTime,
+                    classTime: classes.classTime,
+                    Submitted: formattedDateTime,
                 };
 
                 console.log('User clicked Join!', info);

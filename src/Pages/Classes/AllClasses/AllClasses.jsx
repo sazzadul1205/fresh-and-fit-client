@@ -4,7 +4,6 @@ import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
-import { Link } from "react-router-dom";
 import { Orbitals } from "react-spinners-css";
 
 const AllClasses = () => {
@@ -40,7 +39,8 @@ const AllClasses = () => {
                     trainerName: trainerName,
                     email: user.email,
                     classId: classId,
-                    dateTime: formattedDateTime,
+                    classTime: classes.classTime,
+                    Submitted: formattedDateTime,
                 };
 
                 console.log('User clicked Join!', info);

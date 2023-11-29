@@ -54,7 +54,15 @@ const TrainerBooked = () => {
         setSelectedSlot(slotNumber);
     };
 
-
+    const currentDate = new Date();
+    const formattedDateTime = currentDate.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    });
     const handleBookNow = () => {
         const bookingInfo = {
             trainerId: _id,
@@ -65,6 +73,7 @@ const TrainerBooked = () => {
             selectedPlan: selectedPlan.name,
             selectedSlot: selectedSlot,
             price: selectedPlan.price,
+            Submitted: formattedDateTime,
         };
         localStorage.setItem('bookingInfo', JSON.stringify(bookingInfo));
     };
@@ -136,8 +145,8 @@ const TrainerBooked = () => {
                             </div>
                         ))}
                     </div>
-                    {selectedSlot && <h1 className="text-2xl mt-5">Selected Slot: {selectedSlot}</h1>}
-                    {selectedPlan && <h1 className="text-2xl mt-5">Selected Slot: {selectedPlan.name}</h1>}
+                    {selectedSlot && <h1 className="text-2xl font-bold mt-5 text-red-400 bg-gray-700 p-2">Selected Slot: <span className="text-green-500">{selectedSlot}</span></h1>}
+                    {selectedPlan && <h1 className="text-2xl font-bold mt-5 text-red-400 bg-gray-700 p-2">Selected Slot: <span className="text-yellow-600">{selectedPlan.name}</span></h1>}
                 </div>
             </div>
             <div className="flex justify-end mt-6 text-white">
