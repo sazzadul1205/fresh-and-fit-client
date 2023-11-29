@@ -57,12 +57,12 @@ export const router = createBrowserRouter([
             {
                 path: '/trainer/:id',
                 element: <PrivateRoutes><TrainerDetails></TrainerDetails></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
+                loader: ({ params }) => fetch(`https://fresh-and-fit-server.vercel.app/trainers/${params.id}`)
             },
             {
                 path: '/trainerBooking/:id',
                 element: <PrivateRoutes><TrainerBooked></TrainerBooked></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
+                loader: ({ params }) => fetch(`https://fresh-and-fit-server.vercel.app/trainers/${params.id}`)
             },
             {
                 path: '/beATrainer',
@@ -119,7 +119,7 @@ export const router = createBrowserRouter([
             {
                 path: 'trainerPayment/:id',
                 element: <AdminRoute><TrainerPayment></TrainerPayment></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/trainers/${params.id}`)
+                loader: ({ params }) => fetch(`https://fresh-and-fit-server.vercel.app/trainers/${params.id}`)
             },
             {
                 path: 'appliedTrainer',
@@ -128,7 +128,7 @@ export const router = createBrowserRouter([
             {
                 path: 'rejectedTrainer/:id',
                 element: <AdminRoute><RejectionMail></RejectionMail></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/nTrainerRequest/${params.id}`)
+                loader: ({ params }) => fetch(`https://fresh-and-fit-server.vercel.app/nTrainerRequest/${params.id}`)
             },
             {
                 path: 'balance',
@@ -146,12 +146,12 @@ export const router = createBrowserRouter([
             {
                 path: 'sendInstruction/:id',
                 element: <SendInstruction></SendInstruction>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://fresh-and-fit-server.vercel.app/bookings/${params.id}`)
             },
             {
                 path: 'memberRejection/:id',
                 element: <MemberReject></MemberReject>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://fresh-and-fit-server.vercel.app/bookings/${params.id}`)
             },
             {
                 path: 'addNewClasses',

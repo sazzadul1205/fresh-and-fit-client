@@ -3,7 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Orbitals } from 'react-spinners-css';
 
 const getImages = async ({ pageParam = 0 }) => {
-    const res = await fetch(`http://localhost:5000/gallery?limit=12&offset=${pageParam}`);
+    const res = await fetch(`https://fresh-and-fit-server.vercel.app/gallery?limit=12&offset=${pageParam}`);
     if (!res.ok) {
         throw new Error(`Error fetching images: ${res.statusText}`);
     }
