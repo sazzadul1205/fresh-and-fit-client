@@ -1,6 +1,10 @@
 
 Live Link
-    
+    https://fresh-and-fit-c2dc3.web.app/
+
+Admin PAss and email
+Email: admin@gmail.com
+password: @Pritom1205
 
 
 1. **Comprehensive About Us Section:**
